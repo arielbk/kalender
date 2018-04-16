@@ -1,0 +1,271 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/*----------------------------------------------------------------------------/*
+
+                                              COLOUR PALETTE ->
+
+==========================================================================
+
+EERIE BLACK #191919
+ENGLISH VERMILLION #c14641
+VEGAS GOLD #cca559
+WARM BLACK #0a3847
+BLUE SAPPHIRE #1e6870
+
+ */
+
+/*----------------------------------------------------------------------------/*
+
+                                              CUSTOM STYLES BEGIN ->
+
+==========================================================================*/
+
+html {
+  min-height: 100%;
+}
+body {
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background-color: #191919;
+  font-size: 18px;
+  color: #191919;
+}
+
+/*----------------------------------------------------------------------------/*
+
+                                              LAYOUT ->
+
+==========================================================================*/
+
+*,
+*::before,
+*::after {
+    -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+.container {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  margin: 0 auto;
+}
+.main-calendar {
+  border-radius: 5px;
+  background-color: #0a3847;
+  min-width: 810px;
+  width: 85%;
+  min-height: 300px;
+  margin: 60px auto;
+  box-shadow: 0 10px 30px #000;
+}
+.small-box {
+  border-radius: 5px;
+  background-color: #ffe;
+  width: 300px;
+  margin: 60px auto;
+  box-shadow: 0 10px 30px #000;
+}
+
+/*----------------------------------------------------------------------------/*
+
+                                              TYPOGRAPHY ->
+
+==========================================================================*/
+
+h1 {
+  padding: 66px 0 0 7.5%;
+  font-size: 4em;
+  color: #c14641;
+}
+
+header h1 {
+  text-shadow: 2px 2px 17px #000;
+	display: inline-block;
+	font-weight: 200;
+	text-transform: uppercase;
+	letter-spacing: -1px;
+}
+
+header h2 {
+	font-size: 2.5em;
+	font-weight: 200;
+	color: #818181;
+	display: inline-block;
+	float: right;
+	margin: 140px 7.5% 5px 0;
+}
+
+/* p {
+  margin: 22px;
+} */
+
+/*----------------------------------------------------------------------------/*
+
+                                              TABLES / CALENDAR ->
+
+==========================================================================*/
+
+table {
+  width: 100%;
+	vertical-align: top;
+}
+thead {
+	border-radius: 5px;
+}
+th {
+	background: #0a3847;
+	padding: 22px;
+	color: #ffe;
+	font-weight: 100;
+	font-size: 1.2em;
+}
+th:first-child {
+	border-radius: 5px 0 0 0;
+}
+th:last-child {
+	border-radius: 0 5px 0 0;
+}
+td {
+	background: #ffe;
+  width: 14%;
+  padding: 44px;
+	text-align: center;
+}
+td:hover {
+  background: #98babe;
+}
+.special-day {
+	color: #0a3847;
+}
+.special-day h4 {
+  border-bottom: 5px solid #818181;
+}
+.today-highlight {
+	background: #cca559;
+	color: #191919;
+}
+.today-highlight h4 {
+	border-bottom: 5px solid #5d4b29;
+}
+.other-month {
+  background: #c0c0c0;
+  color: #818181;
+}
+tr:last-child td:first-child {
+  border-radius: 0 0 0 5px;
+}
+tr:last-child td:last-child {
+  border-radius: 0 0 5px 0;
+}
+
+/*----------------------------------------------------------------------------/*
+
+                                              FORM ->
+
+==========================================================================*/
+
+form {
+  width: 100%;
+  height: 100%;
+}
+fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+input {
+  border-radius: 5px;
+  font: 14px/1.4 "Helvetica Neue", Helvetica, Arial, sans-serif;
+  margin: 0;
+}
+.account-info {
+  padding: 22px;
+}
+.account-info label {
+  color: #0a3847;
+  display: block;
+  font-weight: bold;
+  margin-bottom: 22px;
+}
+.account-info input {
+  background: #fff;
+  border: 1px solid #c6c7cc;
+  box-shadow: inset 1px 2px rgba(0, 0, 0, .1);
+  color: #191919;
+  padding: 6px;
+  margin-top: 6px;
+  width: 100%;
+}
+.account-action {
+  background: #0a3847;
+  border-top: solid 1px #191919;
+  padding: 22px;
+  border-radius: 0 0 5px 5px;
+}
+.account-action .btn {
+  background: #cca559;
+  border: 0;
+  color: #191919;
+  cursor: pointer;
+	font-size: 1em;
+  font-weight: bold;
+  float: left;
+  padding: 8px 16px;
+}
+.account-action .btn:hover {
+	background: #191919;
+	color: #ffe;
+}
+.account-action label {
+  color: #ffe;
+  font-size: 12px;
+  float: left;
+  margin: 10px 0 0 20px;
+}
