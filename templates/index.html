@@ -4,9 +4,13 @@
 <header>
   <h1>Kalender</h1>
   <h2>
-    {{ now.day }}{% if now.day == 1 or now.day == 21 or now.day == 31 %}st{% elif now.day == 2 or now.day == 22 %}nd{% elif now.day == 3 or now.day == 23 %}rd{% else %}th{% endif %}
+
+    {% if current_month == now.month and current_year == now.year %}
+      {{ now.day }}{% if now.day == 1 or now.day == 21 or now.day == 31 %}st{% elif now.day == 2 or now.day == 22 %}nd{% elif now.day == 3 or now.day == 23 %}rd{% else %}th{% endif %}
+    {% endif %}
     {{ month_name_current }},
-    {{now.year}}
+    {{ current_year }}
+
   </h2>
 </header>
 <section class="main-calendar">
@@ -26,7 +30,7 @@
         {% for day in week %}
           {% if day == 0 %}
             <td class="other-month">0</td>
-          {% elif day == now.day %}
+          {% elif day == now.day and current_month == now.month and current_year == now.year %}
             <td class="today-highlight"><h4>{{ day }}</h4></td>
           {% elif day == 1 %}
             <td><h4>1 {{ month_name_current }}</h4></td>
@@ -39,7 +43,8 @@
   </tbody>
 </table>
 
-<h1 class="float-left">{{ month_name_prev }}</h1><h1 class="float-right">{{ month_name_next }}</h1>
+<h3 class="float-left mt-3"><a href="{{month_prev}}_{% if month_prev == 12 %}{{current_year-1}}{% else %}{{current_year}}{% endif %}">{{ month_name_prev }}</a></h3>
+<h3 class="float-right mt-3"><a href="{{month_next}}_{% if month_next == 1 %}{{current_year+1}}{% else %}{{current_year}}{% endif %}">{{ month_name_next }}</a></h3>
 
 </section>
 

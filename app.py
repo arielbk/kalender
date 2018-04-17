@@ -7,13 +7,13 @@ import datetime, calendar
 
 app = Flask(__name__)
 
-
 # Config MySQL
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = 'root'
 app.config['MYSQL_DB'] = 'kalender_app'
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
+
 # Init MySQL
 mysql = MySQL(app)
 
@@ -48,32 +48,44 @@ def month_name(month_number):
 def home():
     # Determine current date
     now = datetime.datetime.now()
+    return make_calendar(now.month, now.year)
 
-    # Set current month and year default for now
-    current_month = now.month
-    current_year = now.year
+# Other months
+@app.route('/<int:month>_<int:year>')
+def make_calendar(month, year):
+    # Determine current date
+    now = datetime.datetime.now()
+    now_month_name = month_name(now.month)
+
+    # Set current month and year
+    current_month = month
+    current_year = year
 
     # Create data to populate calendar
     cal_month = calendar.monthcalendar(current_year, current_month)
+    month_name_current = month_name(current_month)
 
     # Create data from a month before
     if current_month == 1:
         cal_month_prev = calendar.monthcalendar(current_year - 1, 12)
+        month_prev = 12
+        month_name_prev = month_name(month_prev)
     else:
         cal_month_prev = calendar.monthcalendar(current_year, current_month - 1)
+        month_prev = current_month - 1
+        month_name_prev = month_name(month_prev)
 
     # Create data for the next month
     if current_month == 12:
         cal_month_next = calendar.monthcalendar(current_year + 1, 1)
+        month_next = 1
+        month_name_next = month_name(month_next)
     else:
         cal_month_next = calendar.monthcalendar(current_year, current_month + 1)
+        month_next = current_month + 1
+        month_name_next = month_name(month_next)
 
-    # String for months: prev, current, after
-    month_name_prev = month_name(current_month - 1)
-    month_name_current = month_name(current_month)
-    month_name_next = month_name(current_month + 1)
-
-    return render_template('index.html', now=now,
+    return render_template('index.html', now=now, now_month_name=now_month_name, month_prev=month_prev, month_next=month_next, current_month=current_month, current_year=current_year,
         cal_month=cal_month, cal_month_prev=cal_month_prev, cal_month_next=cal_month_next,
         month_name_prev=month_name_prev, month_name_current=month_name_current, month_name_next=month_name_next)
 
