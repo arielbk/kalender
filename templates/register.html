@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+  <h2 class="bg-dark">Register</h2>
+
+  {% from "includes/_formhelpers.html" import render_field %}
+
+  <section class="small-box">
+    <form action="" method="POST">
+      <fieldset class="account-info">
+        <label for="username">
+          {{render_field(form.username, class_="form-control")}}
+        </label>
+        <label for="email">
+          {{render_field(form.email, class_="form-control")}}
+        </label>
+        <label for="password">
+          {{render_field(form.password, class_="form-control")}}
+        </label>
+        <label for="confirm">
+          {{render_field(form.confirm, class_="form-control")}}
+        </label>
+      </fieldset>
+      <fieldset class="account-action">
+        <input class="btn" type="submit" name="submit" value="Register">
+      </fieldset>
+    </form>
+  </section>
+
+{% endblock %}
