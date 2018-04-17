@@ -3,7 +3,11 @@
 {% block body %}
 <header>
   <h1>Kalender</h1>
-  <h2>16th April, 2018</h2>
+  <h2>
+    {{ now.day }}{% if now.day == 1 or now.day == 21 or now.day == 31 %}st{% elif now.day == 2 or now.day == 22 %}nd{% elif now.day == 3 or now.day == 23 %}rd{% else %}th{% endif %}
+    {% if now.month == 1 %} January{% elif now.month == 2 %} February{% elif now.month == 3 %} March{% elif now.month == 4 %} April{% elif now.month == 5 %} May{% elif now.month == 6 %} June{% elif now.month == 6 %} June{% elif now.month == 7 %} July{% elif now.month == 8 %} August{% elif now.month == 9 %} September{% elif now.month == 10 %} October{% elif now.month == 11 %} November{% else %} December{% endif %}, 
+    {{now.year}}
+  </h2>
 </header>
 <section class="main-calendar">
 <table>
