@@ -3,9 +3,10 @@ from flask_mysqldb import MySQL
 from wtforms import Form, StringField, TextAreaField, PasswordField, validators
 from passlib.hash import sha256_crypt
 from functools import wraps
-import datetime
+import datetime, calendar
 
 app = Flask(__name__)
+
 
 # Config MySQL
 app.config['MYSQL_HOST'] = 'localhost'
@@ -16,11 +17,65 @@ app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 # Init MySQL
 mysql = MySQL(app)
 
+def month_name(month_number):
+    if month_number == 1:
+        return 'January'
+    elif month_number == 2:
+        return 'February'
+    elif month_number == 3:
+        return 'March'
+    elif month_number == 4:
+        return 'April'
+    elif month_number == 5:
+        return 'May'
+    elif month_number == 6:
+        return 'June'
+    elif month_number == 7:
+        return 'July'
+    elif month_number == 8:
+        return 'August'
+    elif month_number == 9:
+        return 'September'
+    elif month_number == 10:
+        return 'October'
+    elif month_number == 11:
+        return 'November'
+    elif month_number == 12:
+        return 'December'
+
 # Index
 @app.route('/')
 def home():
+    # Determine current date
     now = datetime.datetime.now()
-    return render_template('index.html', now=now)
+
+    # Set current month and year default for now
+    current_month = now.month
+    current_year = now.year
+
+    # Create data to populate calendar
+    cal_month = calendar.monthcalendar(current_year, current_month)
+
+    # Create data from a month before
+    if current_month == 1:
+        cal_month_prev = calendar.monthcalendar(current_year - 1, 12)
+    else:
+        cal_month_prev = calendar.monthcalendar(current_year, current_month - 1)
+
+    # Create data for the next month
+    if current_month == 12:
+        cal_month_next = calendar.monthcalendar(current_year + 1, 1)
+    else:
+        cal_month_next = calendar.monthcalendar(current_year, current_month + 1)
+
+    # String for months: prev, current, after
+    month_name_prev = month_name(current_month - 1)
+    month_name_current = month_name(current_month)
+    month_name_next = month_name(current_month + 1)
+
+    return render_template('index.html', now=now,
+        cal_month=cal_month, cal_month_prev=cal_month_prev, cal_month_next=cal_month_next,
+        month_name_prev=month_name_prev, month_name_current=month_name_current, month_name_next=month_name_next)
 
 # Register form class - using WTForms
 class RegisterForm(Form):
