@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+  <h2>
+    Create Note
+  </h2>
+  {% from "includes/_formhelpers.html" import render_field %}
+  <section class="form-box form-box-large">
+
+    <form action="" method="POST">
+      <fieldset class="form-fields">
+        <label for="title">
+          {{ render_field(form.title, class_="form-conrol") }}
+        </label>
+        <label for="body">
+          {{ render_field(form.body, class_="form-control", id="editor") }}
+        </label>
+      </fieldset>
+      <fieldset class="form-action">
+        <input class="btn" type="submit" name="submit" value="Update Note">
+      </fieldset>
+    </form>
+  </section>
+
+{% endblock %}

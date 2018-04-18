@@ -73,7 +73,7 @@ html {
 body {
   font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   background-color: #191919;
-  font-size: 18px;
+  font-size: 16px;
   color: #191919;
 }
 
@@ -96,21 +96,26 @@ body {
   position: absolute;
   margin: 0 auto;
 }
-.main-calendar {
+.main-window {
   border-radius: 5px;
   background-color: #0a3847;
   min-width: 810px;
   width: 85%;
-  min-height: 300px;
-  margin: 60px auto;
+  margin: 22px auto;
   box-shadow: 0 10px 30px #000;
 }
-.small-box {
+.form-box {
   border-radius: 5px;
   background-color: #ffe;
-  width: 300px;
-  margin: 60px auto;
   box-shadow: 0 10px 30px #000;
+	margin: 60px auto;
+}
+.form-box-small {
+	width: 300px;
+}
+.form-box-large {
+	width: 85%;
+	min-width: 810px;
 }
 
 /*----------------------------------------------------------------------------/*
@@ -120,12 +125,12 @@ body {
 ==========================================================================*/
 
 h1 {
-  padding: 22px 0 0 7.5%;
   font-size: 4em;
   color: #c14641;
 }
 
 header h1 {
+	margin: 40px 0 0 7.5%;
   text-shadow: 2px 2px 17px #000;
 	display: inline-block;
 	font-weight: 200;
@@ -139,14 +144,15 @@ header h2 {
 	color: #818181;
 	display: inline-block;
 	float: right;
-	margin: 140px 7.5% 5px 0;
+	margin-right: 7.5%;
+	padding-top: 80px;
 }
 
 h3,
 h3 a {
-	font-size: 2em;
+	font-size: 1.7em;
 	color: #818181;
-	margin-top: 44px;
+	margin-top: 22px;
 }
 
 h3 a:hover {
@@ -155,7 +161,7 @@ h3 a:hover {
 
 /*----------------------------------------------------------------------------/*
 
-                                              TABLES / CALENDAR ->
+                                              TABLES ->
 
 ==========================================================================*/
 
@@ -182,29 +188,11 @@ th:last-child {
 }
 td {
 	background: #ffe;
-  width: 14%;
-  padding: 44px;
-	text-align: center;
-}
-td:hover {
-  background: #98babe;
-}
-.special-day {
-	color: #0a3847;
-}
-.special-day h4 {
-  border-bottom: 5px solid #818181;
-}
-.today-highlight {
-	background: #cca559;
 	color: #191919;
+	padding: 44px;
 }
-.today-highlight h4 {
-	border-bottom: 5px solid #5d4b29;
-}
-.other-month {
-  background: #c0c0c0;
-  color: #818181;
+tfoot td {
+	background: #0a3847;
 }
 tr:last-child td:first-child {
   border-radius: 0 0 0 5px;
@@ -215,7 +203,59 @@ tr:last-child td:last-child {
 
 /*----------------------------------------------------------------------------/*
 
-                                              FORM ->
+                                              MAIN CALENDAR ->
+
+==========================================================================*/
+
+.main-calendar td {
+  width: 14%;
+	text-align: center;
+	padding: 0;
+	height: 100px;
+	overflow: scroll;
+}
+.main-calendar td a {
+	color: #191919;
+	padding: 22px;
+	display: block;
+	width: 100%;
+	height: 100px;
+	overflow: scroll;
+}
+.main-calendar td a:hover {
+  background: #98babe;
+	text-decoration: none;
+	color: #0a3847;
+}
+/* .special-day a {
+	color: #0a3847;
+  border-bottom: 5px solid #818181;
+} */
+.today-highlight a {
+	background: #cca559;
+	color: #191919;
+}
+/* .today-highlight a {
+	border-bottom: 5px solid #5d4b29;
+} */
+.other-month a {
+  background: #c0c0c0;
+  color: #818181;
+}
+.small-titles {
+	margin-top: 10px;
+}
+.small-titles li {
+	list-style-type: square;
+	list-style-position: inside;
+	font-size: 0.8em;
+	line-height: 1.5em;
+	color: #818181;
+}
+
+/*----------------------------------------------------------------------------/*
+
+                                              FORMS ->
 
 ==========================================================================*/
 
@@ -233,16 +273,16 @@ input {
   font: 14px/1.4 "Helvetica Neue", Helvetica, Arial, sans-serif;
   margin: 0;
 }
-.account-info {
+.form-fields {
   padding: 22px;
 }
-.account-info label {
+.form-fields label {
   color: #0a3847;
   display: block;
   font-weight: bold;
   margin-bottom: 22px;
 }
-.account-info input {
+.form-fields input {
   background: #fff;
   border: 1px solid #c6c7cc;
   box-shadow: inset 1px 2px rgba(0, 0, 0, .1);
@@ -251,29 +291,53 @@ input {
   margin-top: 6px;
   width: 100%;
 }
-.account-action {
+.form-action {
   background: #0a3847;
   border-top: solid 1px #191919;
   padding: 22px;
   border-radius: 0 0 5px 5px;
 }
-.account-action .btn {
-  background: #cca559;
-  border: 0;
-  color: #191919;
-  cursor: pointer;
-	font-size: 1em;
-  font-weight: bold;
-  float: left;
-  padding: 8px 16px;
-}
-.account-action .btn:hover {
-	background: #191919;
-	color: #ffe;
-}
-.account-action label {
+.form-action label {
   color: #ffe;
   font-size: 12px;
   float: left;
   margin: 10px 0 0 20px;
+}
+.btn {
+	border: 0;
+  cursor: pointer;
+	font-size: 1em;
+  font-weight: bold;
+  padding: 8px 16px;
+	color: #191919;
+}
+.form-action .btn {
+  background: #cca559;
+  float: left;
+}
+.form-action .btn:hover {
+	background: #191919;
+	color: #ffe;
+}
+.btn-delete {
+	background: #c14641;
+}
+.btn-edit {
+	background: #191919;
+	color: #ffe;
+}
+.btn-create {
+	background: #1e6870;
+	color: #ffe;
+}
+
+
+/*----------------------------------------------------------------------------/*
+
+                                              DATE NOTES TABLE ->
+
+==========================================================================*/
+
+.note-description {
+	text-align: center;
 }

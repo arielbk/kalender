@@ -1,0 +1,43 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<header>
+  <h1>
+    Notes:
+    {{ day }}
+    {{ selected_month_name }},
+    {{ year }}
+  </h1>
+
+  <a class="btn btn-create float-right" href="create-note_{{ year }}-{{ month }}-{{ day }}">Create</a>
+
+</header>
+
+<section class="main-window">
+  <table>
+    <thead>
+      <th scope="col">
+        Title/time
+      </th>
+      <th>Body</th>
+      <th>Options</th>
+    </thead>
+    <tbody>
+
+      {% for note in notes %}
+        <tr>
+          <td>{{ note.title }}</td>
+          <td>{{ note.body|safe }}</td>
+          <td>
+            <a class="btn btn-edit" href="edit-note_{{ note.id }}">Edit</a><br>
+            <a class="btn btn-delete" href="delete-note_{{ note.id }}">Delete</a>
+          </td>
+        </tr>
+      {% endfor %}
+
+    </tbody>
+</table>
+</section>
+
+</header>
+{% endblock %}

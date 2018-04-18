@@ -5,9 +5,9 @@
 
   {% from "includes/_formhelpers.html" import render_field %}
 
-  <section class="small-box">
+  <section class="form-box form-box-small">
     <form action="" method="POST">
-      <fieldset class="account-info">
+      <fieldset class="form-fields">
         <label for="username">
           {{render_field(form.username, class_="form-control")}}
         </label>
@@ -21,7 +21,7 @@
           {{render_field(form.confirm, class_="form-control")}}
         </label>
       </fieldset>
-      <fieldset class="account-action">
+      <fieldset class="form-action">
         <input class="btn" type="submit" name="submit" value="Register">
       </fieldset>
     </form>
