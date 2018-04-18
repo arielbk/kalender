@@ -17,6 +17,7 @@ app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 # Init MySQL
 mysql = MySQL(app)
 
+# Define names for the months of the year
 def month_name(month_number):
     if month_number == 1:
         return 'January'
@@ -50,7 +51,7 @@ def home():
     now = datetime.datetime.now()
     return make_calendar(now.month, now.year)
 
-# Other months
+# Make calendar months
 @app.route('/<int:month>_<int:year>')
 def make_calendar(month, year):
     # Determine current date
@@ -85,7 +86,29 @@ def make_calendar(month, year):
         month_next = current_month + 1
         month_name_next = month_name(month_next)
 
-    return render_template('index.html', now=now, now_month_name=now_month_name, month_prev=month_prev, month_next=month_next, current_month=current_month, current_year=current_year,
+    # Add dates from previous month to blank spaces
+    for i in range(7):
+        if cal_month[0][i] == 0:
+            cal_month[0][i] = 32 * cal_month_prev[(len(cal_month_prev)-1)][i]
+
+    # Add dates from next month to blank spaces
+    for i in range(7):
+        if cal_month[(len(cal_month)-1)][i] == 0:
+            cal_month[(len(cal_month)-1)][i] = 32 * cal_month_next[0][i]
+
+    notes = []
+    if ('logged_in' in session):
+        # POPULATE CALENDAR WITH SAVED NOTE TITLES
+
+        # Create cursor
+        cur = mysql.connection.cursor()
+
+        # Execute
+        cur.execute('SELECT * FROM notes WHERE username=%s AND date_month=%s AND date_year=%s', (session['username'], current_month, current_year))
+
+        notes = cur.fetchall()
+
+    return render_template('index.html', notes=notes, now=now, now_month_name=now_month_name, month_prev=month_prev, month_next=month_next, current_month=current_month, current_year=current_year,
         cal_month=cal_month, cal_month_prev=cal_month_prev, cal_month_next=cal_month_next,
         month_name_prev=month_name_prev, month_name_current=month_name_current, month_name_next=month_name_next)
 
@@ -139,7 +162,6 @@ def login():
         # Get user by username
         result = cur.execute('SELECT * FROM users WHERE username = %s', [username])
 
-
         if result > 0:
             # Username found
 
@@ -178,7 +200,7 @@ def login_required(f):
         if 'logged_in' in session:
             return f(*args, **kwargs)
         else:
-            flash('Unauthorised page, please log in.', 'danger')
+            flash('You must be logged in to access this page.', 'danger')
             return redirect(url_for('login'))
     return wrap
 
@@ -188,7 +210,141 @@ def login_required(f):
 def logout():
     session.clear()
     flash('Successfully logged out.', 'success')
-    return redirect(url_for('login'))
+    return redirect(url_for('home'))
+
+# Individual date's notes
+@app.route('/<int:year>-<int:month>-<int:day>')
+@login_required
+def date(year, month, day):
+    # Display the string name for the chosen date
+    selected_month_name = month_name(month)
+
+    # Create cursor
+    cur = mysql.connection.cursor()
+
+    # Get notes for selected date and user
+    result = cur.execute("SELECT * FROM notes WHERE username=%s AND date_day=%s AND date_month=%s AND date_year=%s", (session['username'], day, month, year))
+
+    notes = cur.fetchall()
+
+    if result > 0:
+        return render_template('date.html', notes=notes,
+            year=year, month=month, selected_month_name=selected_month_name, day=day)
+    else:
+        error = "No notes for selected date"
+        return render_template('date.html', error=error,
+            year=year, month=month, selected_month_name=selected_month_name, day=day)
+
+    # Close connection
+    cur.close()
+
+# Note form class
+class NoteForm(Form):
+    title = StringField('Title', [validators.Length(min=1, max=60)])
+    body = TextAreaField('Body')
+
+# Create a note for a particular date
+@app.route('/create-note_<int:year>-<int:month>-<int:day>', methods=['GET', 'POST'])
+@login_required
+def create_note(year, month, day):
+    selected_month_name = month_name(month)
+    form = NoteForm(request.form)
+    if request.method == 'POST' and form.validate():
+        title = form.title.data
+        body = form.body.data
+
+        # Create cursor
+        cur = mysql.connection.cursor()
+
+        # Execute db
+        cur.execute("INSERT INTO notes(username, title, body, date_day, date_month, date_year) VALUES(%s, %s, %s, %s, %s, %s);", (session['username'], title, body, day, month, year))
+
+        # Commit to db
+        mysql.connection.commit()
+
+        # Close connection
+        cur.close()
+
+        flash('Note created', 'success')
+        return date(year, month, day)
+
+    return render_template('create-note.html', form=form, year=year, month=month, selected_month_name=selected_month_name, day=day)
+
+# Update a note for a particular date
+@app.route('/edit-note_<string:id>', methods=['GET', 'POST'])
+@login_required
+def edit_note(id):
+    # Create cursor
+    cur = mysql.connection.cursor()
+
+    # Get article by ID and username
+    result = cur.execute("SELECT * FROM notes WHERE id=%s AND username=%s", [id, session['username']])
+
+    note = cur.fetchone()
+
+    # Details to use on the page
+    year = note['date_year']
+    month = note['date_month']
+    day = note['date_day']
+    selected_month_name = month_name(month)
+
+    # Get form
+    form = NoteForm(request.form)
+
+    # Populate note form fields
+    form.title.data = note['title']
+    form.body.data = note['body']
+
+    if request.method == 'POST' and form.validate():
+        title = form.title.data
+        body = form.body.data
+
+        # Create cursor
+        cur = mysql.connection.cursor()
+
+        # Execute db
+        cur.execute("UPDATE notes SET title=%s, body=%s WHERE id=%s AND username=%s);", (title, body, id, session['username']))
+
+        # Commit to db
+        mysql.connection.commit()
+
+        # Close connection
+        cur.close()
+
+        flash('Note updated', 'success')
+        return date(year, month, day)
+
+    return render_template('create-note.html', form=form)
+
+    return render_template('create-note.html', form=form, year=year, month=month, selected_month_name=selected_month_name, day=day)
+
+# Delete a particular note
+@app.route('/delete-note_<string:id>')
+@login_required
+def delete_article(id):
+    # Create cursor
+    cur = mysql.connection.cursor()
+
+    # Execute - retrieve information for return journey
+    cur.execute('SELECT * FROM notes WHERE id=%s AND username=%s', [id, session['username']])
+
+    note = cur.fetchone()
+
+    year = note['date_year']
+    month = note['date_month']
+    day = note['date_day']
+
+    # Execute - remove from db
+    cur.execute('DELETE FROM notes WHERE id=%s AND username=%s', [id, session['username']])
+
+    # Commit to db
+    mysql.connection.commit()
+
+    # Close connection
+    cur.close()
+
+    flash('Note deleted', 'success')
+    return date(year, month, day)
 
 if __name__ == '__main__':
     app.secret_key = 'secret'

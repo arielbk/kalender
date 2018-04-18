@@ -2,50 +2,70 @@
 
 {% block body %}
 <header>
-  <h1>Kalender</h1>
+  <h1>{{ month_name_current }} {{ current_year }}</h1>
   <h2>
-
-    {% if current_month == now.month and current_year == now.year %}
-      {{ now.day }}{% if now.day == 1 or now.day == 21 or now.day == 31 %}st{% elif now.day == 2 or now.day == 22 %}nd{% elif now.day == 3 or now.day == 23 %}rd{% else %}th{% endif %}
-    {% endif %}
-    {{ month_name_current }},
-    {{ current_year }}
-
+    Today:
+    {{ now.day }}{% if now.day == 1 or now.day == 21 or now.day == 31 %}st{% elif now.day == 2 or now.day == 22 %}nd{% elif now.day == 3 or now.day == 23 %}rd{% else %}th{% endif %}
+    {{ now_month_name }},
+    {{ now.year }}
   </h2>
 </header>
-<section class="main-calendar">
-<table>
-  <thead>
-    <th scope="col">Mon</th>
-    <th scope="col">Tues</th>
-    <th scope="col">Wed</th>
-    <th scope="col">Thurs</th>
-    <th scope="col">Fri</th>
-    <th scope="col">Sat</th>
-    <th scope="col">Sun</th>
-  </thead>
-  <tbody>
-    {% for week in cal_month %}
-      <tr>
-        {% for day in week %}
-          {% if day == 0 %}
-            <td class="other-month">0</td>
-          {% elif day == now.day and current_month == now.month and current_year == now.year %}
-            <td class="today-highlight"><h4>{{ day }}</h4></td>
-          {% elif day == 1 %}
-            <td><h4>1 {{ month_name_current }}</h4></td>
-          {% else %}
-            <td><h4>{{ day }}</h4></td>
-          {% endif %}
-        {% endfor %}
-      </tr>
-    {% endfor %}
-  </tbody>
+<section class="main-window main-calendar">
+  <table>
+    <thead>
+      <th scope="col">Mon</th>
+      <th scope="col">Tues</th>
+      <th scope="col">Wed</th>
+      <th scope="col">Thurs</th>
+      <th scope="col">Fri</th>
+      <th scope="col">Sat</th>
+      <th scope="col">Sun</th>
+    </thead>
+    <tbody>
+      {% for week in cal_month %}
+        <tr>
+          {% for day in week %}
+            {% if day > 31 %}
+              {% if day == 32 %} <!-- if the cell is 1st of next month -->
+                <td class="other-month"><a href="#">1 {{ month_name_next }}</a></td>
+              {% else %} <!-- if the cell is previous or next month -->
+                <td class="other-month"><a href="#">{{ (day / 32)|int }}</a></td>
+              {% endif %}
+            {% elif day == now.day and current_month == now.month and current_year == now.year %}
+              <td class="today-highlight"><a href="{{ current_year }}-{{ current_month }}-{{ day }}">{{ day }}</a></td>
+            {% elif day == 1 %}
+              <td><a href="{{ current_year }}-{{ current_month }}-1">1 {{ month_name_current }}</a></td>
+            {% else %}
+              <td><a href="{{ current_year }}-{{ current_month }}-{{ day }}">{{ day }}
+
+
+                <ul class="small-titles">
+                  {% for note in notes %}
+                    {% if note['date_day'] == day %}
+                      <li>{{note['title']}}</li>
+                    {% endif %}
+                  {% endfor %}
+                </ul>
+
+              </a></td>
+            {% endif %}
+          {% endfor %}
+        </tr>
+      {% endfor %}
+
+</tbody>
+<tfoot>
+  <tr>
+    <td colspan="3">
+    <h3 class="float-left mt-3"><a href="{{month_prev}}_{% if month_prev == 12 %}{{current_year-1}}{% else %}{{current_year}}{% endif %}">{{ month_name_prev }}</a></h3>
+  </td>
+  <td></td>
+  <td colspan="3">
+    <h3 class="float-right mt-3"><a href="{{month_next}}_{% if month_next == 1 %}{{current_year+1}}{% else %}{{current_year}}{% endif %}">{{ month_name_next }}</a></h3>
+</td>
+  </tr>
+</tfoot>
 </table>
-
-<h3 class="float-left mt-3"><a href="{{month_prev}}_{% if month_prev == 12 %}{{current_year-1}}{% else %}{{current_year}}{% endif %}">{{ month_name_prev }}</a></h3>
-<h3 class="float-right mt-3"><a href="{{month_next}}_{% if month_next == 1 %}{{current_year+1}}{% else %}{{current_year}}{% endif %}">{{ month_name_next }}</a></h3>
-
 </section>
 
 {% endblock %}
