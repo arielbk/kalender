@@ -3,7 +3,15 @@
 {% block body %}
 <header>
   <h1>Kalender</h1>
-  <h2>16th April, 2018</h2>
+  <h2>
+
+    {% if current_month == now.month and current_year == now.year %}
+      {{ now.day }}{% if now.day == 1 or now.day == 21 or now.day == 31 %}st{% elif now.day == 2 or now.day == 22 %}nd{% elif now.day == 3 or now.day == 23 %}rd{% else %}th{% endif %}
+    {% endif %}
+    {{ month_name_current }},
+    {{ current_year }}
+
+  </h2>
 </header>
 <section class="main-calendar">
 <table>
@@ -17,62 +25,27 @@
     <th scope="col">Sun</th>
   </thead>
   <tbody>
-    <tr>
-      <td class="other-month"><h4>26</h4></td>
-      <td class="other-month"><h4>27</h4></td>
-      <td class="other-month"><h4>28</h4></td>
-      <td class="other-month"><h4>29</h4></td>
-      <td class="other-month"><h4>30</h4></td>
-      <td class="other-month"><h4>31</h4></td>
-      <td><h4>1 Apr</h4></td>
-    </tr>
-    <tr>
-      <td><h4>2</h4></td>
-      <td><h4>3</h4></td>
-      <td><h4>4</h4></td>
-      <td><h4>5</h4></td>
-      <td><h4>6</h4></td>
-      <td><h4>7</h4></td>
-      <td><h4>8</h4></td>
-    </tr>
-    <tr>
-      <td><h4>9</h4></td>
-      <td><h4>10</h4></td>
-      <td><h4>11</h4></td>
-      <td><h4>12</h4></td>
-      <td><h4>13</h4></td>
-      <td class="special-day"><h4>14</h4></td>
-      <td><h4>15</h4></td>
-    </tr>
-    <tr>
-      <td class="today-highlight"><h4>16</h4></td>
-      <td><h4>17</h4></td>
-      <td><h4>18</h4></td>
-      <td><h4>19</h4></td>
-      <td><h4>20</h4></td>
-      <td><h4>21</h4></td>
-      <td><h4>22</h4></td>
-    </tr>
-    <tr>
-      <td class="special-day"><h4>23</h4></td>
-      <td><h4>24</h4></td>
-      <td><h4>25</h4></td>
-      <td><h4>26</h4></td>
-      <td><h4>27</h4></td>
-      <td><h4>28</h4></td>
-      <td><h4>29</h4></td>
-    </tr>
-    <tr>
-      <td><h4>30</h4></td>
-      <td class="other-month"><h4>1 May</h4></td>
-      <td class="other-month"><h4>2</h4></td>
-      <td class="other-month"><h4>3</h4></td>
-      <td class="other-month"><h4>4</h4></td>
-      <td class="other-month"><h4>5</h4></td>
-      <td class="other-month"><h4>6</h4></td>
-    </tr>
+    {% for week in cal_month %}
+      <tr>
+        {% for day in week %}
+          {% if day == 0 %}
+            <td class="other-month">0</td>
+          {% elif day == now.day and current_month == now.month and current_year == now.year %}
+            <td class="today-highlight"><h4>{{ day }}</h4></td>
+          {% elif day == 1 %}
+            <td><h4>1 {{ month_name_current }}</h4></td>
+          {% else %}
+            <td><h4>{{ day }}</h4></td>
+          {% endif %}
+        {% endfor %}
+      </tr>
+    {% endfor %}
   </tbody>
 </table>
+
+<h3 class="float-left mt-3"><a href="{{month_prev}}_{% if month_prev == 12 %}{{current_year-1}}{% else %}{{current_year}}{% endif %}">{{ month_name_prev }}</a></h3>
+<h3 class="float-right mt-3"><a href="{{month_next}}_{% if month_next == 1 %}{{current_year+1}}{% else %}{{current_year}}{% endif %}">{{ month_name_next }}</a></h3>
+
 </section>
 
 {% endblock %}
