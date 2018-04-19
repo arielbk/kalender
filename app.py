@@ -296,14 +296,14 @@ def edit_note(id):
     form.body.data = note['body']
 
     if request.method == 'POST' and form.validate():
-        title = form.title.data
-        body = form.body.data
+        title = request.form['title']
+        body = request.form['body']
 
         # Create cursor
         cur = mysql.connection.cursor()
 
         # Execute db
-        cur.execute("UPDATE notes SET title=%s, body=%s WHERE id=%s AND username=%s);", (title, body, id, session['username']))
+        cur.execute("UPDATE notes SET title=%s, body=%s WHERE id=%s AND username=%s", (title, body, id, session['username']))
 
         # Commit to db
         mysql.connection.commit()
@@ -314,9 +314,9 @@ def edit_note(id):
         flash('Note updated', 'success')
         return date(year, month, day)
 
-    return render_template('create-note.html', form=form)
+    return render_template('edit-note.html', form=form)
 
-    return render_template('create-note.html', form=form, year=year, month=month, selected_month_name=selected_month_name, day=day)
+    return render_template('edit-note.html', form=form, year=year, month=month, selected_month_name=selected_month_name, day=day)
 
 # Delete a particular note
 @app.route('/delete-note_<string:id>')
