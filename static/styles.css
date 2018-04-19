@@ -158,6 +158,9 @@ h3 a {
 h3 a:hover {
 	color: #c14641;
 }
+strong {
+	font-weight: 600;
+}
 
 /*----------------------------------------------------------------------------/*
 
@@ -193,11 +196,15 @@ td {
 }
 tfoot td {
 	background: #0a3847;
+	border-top: solid 1px #191919;
+	padding: 22px;
 }
-tr:last-child td:first-child {
+tfoot tr:last-child td:first-child {
+	text-align: left;
   border-radius: 0 0 0 5px;
 }
-tr:last-child td:last-child {
+tfoot tr:last-child td:last-child {
+	text-align: right;
   border-radius: 0 0 5px 0;
 }
 
@@ -244,13 +251,25 @@ tr:last-child td:last-child {
 }
 .small-titles {
 	margin-top: 10px;
+	background-color: #98babe;
+	border-radius: 7px;;
 }
 .small-titles li {
 	list-style-type: square;
 	list-style-position: inside;
 	font-size: 0.8em;
 	line-height: 1.5em;
-	color: #818181;
+	color: #191919;
+}
+tfoot h3 {
+	color: #cca559;
+	font-size: 40px;
+	font-weight: 200;
+}
+.month-selector-other a {
+	color: #fff;
+	font-size: 0.7em;
+	margin: 0;
 }
 
 /*----------------------------------------------------------------------------/*
@@ -311,10 +330,14 @@ input {
   padding: 8px 16px;
 	color: #191919;
 }
+.btn-create,
 .form-action .btn {
   background: #cca559;
-  float: left;
 }
+.form-action .btn {
+	float: left;
+}
+.btn-create:hover,
 .form-action .btn:hover {
 	background: #191919;
 	color: #ffe;
@@ -326,10 +349,6 @@ input {
 	background: #191919;
 	color: #ffe;
 }
-.btn-create {
-	background: #1e6870;
-	color: #ffe;
-}
 
 
 /*----------------------------------------------------------------------------/*
@@ -338,6 +357,13 @@ input {
 
 ==========================================================================*/
 
-.note-description {
-	text-align: center;
+.datenote-title {
+	text-align: left;
+}
+.datenote-description {
+	text-align: left;
+}
+.datenote-options {
+	text-align: right;
+	padding: 22px;
 }
