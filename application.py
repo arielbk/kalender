@@ -123,14 +123,17 @@ def make_calendar(month, year):
 
 
 
-##########################################################################################
-        # Create cursor
-        cur = mysql.connection.cursor()
+########################################### SELECT AND SAVE #########################################
+        # # Create cursor
+        # cur = mysql.connection.cursor()
+        #
+        # # Execute
+        # cur.execute('SELECT * FROM notes WHERE username=%s AND date_month=%s AND date_year=%s', (session['username'], current_month, current_year))
+        #
+        # notes = cur.fetchall()
 
-        # Execute
-        cur.execute('SELECT * FROM notes WHERE username=%s AND date_month=%s AND date_year=%s', (session['username'], current_month, current_year))
-
-        notes = cur.fetchall()
+        # need to add in other parameters obviously
+        notes = Note.query.filter_by(username=session['username']).all()
 ##########################################################################################
 
 
@@ -164,18 +167,22 @@ def register():
 
 
 
-##########################################################################################
-        # Create a cursor
-        cur = mysql.connection.cursor()
+######################################## INSERT ##################################################
+        # # Create a cursor
+        # cur = mysql.connection.cursor()
+        #
+        # # Execute query
+        # cur.execute('INSERT INTO users(username, email, password) VALUES(%s, %s, %s)', [username, email, password])
+        #
+        # # Commit to DB
+        # mysql.connection.commit()
+        #
+        # # Close connection
+        # cur.close()
 
-        # Execute query
-        cur.execute('INSERT INTO users(username, email, password) VALUES(%s, %s, %s)', [username, email, password])
-
-        # Commit to DB
-        mysql.connection.commit()
-
-        # Close connection
-        cur.close()
+        user = User(username, email, password)
+        db.session.add(user)
+        db.session.commit()
 ##########################################################################################
 
 
@@ -199,20 +206,22 @@ def login():
 
 
 
-##########################################################################################
+###################################### SELECT AND CHECK ####################################################
 
-        # Create cursor
-        cur = mysql.connection.cursor()
+        # # Create cursor
+        # cur = mysql.connection.cursor()
+        #
+        # # Get user by username
+        # result = cur.execute('SELECT * FROM users WHERE username = %s', [username])
 
-        # Get user by username
-        result = cur.execute('SELECT * FROM users WHERE username = %s', [username])
+        result = User.query.filter_by(username=username).first()
 
-        if result > 0:
+        if result:
             # Username found
 
-            # Get stored hash
-            data = cur.fetchone()
-            password = data['password']
+            # # Get stored hash
+            # data = cur.fetchone()
+            password = result['password']
 
             # Compare candidate and stored hash
             if sha256_crypt.verify(password_candidate, password):
@@ -229,8 +238,8 @@ def login():
                 error = 'Invalid login'
                 return render_template('login.html', error=error)
 
-            # Close connection
-            cur.close()
+            # # Close connection
+            # cur.close()
 ##########################################################################################
 
 
@@ -273,15 +282,17 @@ def date(year, month, day):
 
 
 
-##########################################################################################
+########################################## SELECT AND SAVE ################################################
 
-    # Create cursor
-    cur = mysql.connection.cursor()
+    # # Create cursor
+    # cur = mysql.connection.cursor()
+    #
+    # # Get notes for selected date and user
+    # result = cur.execute("SELECT * FROM notes WHERE username=%s AND date_day=%s AND date_month=%s AND date_year=%s", (session['username'], day, month, year))
+    #
+    # notes = cur.fetchall()
 
-    # Get notes for selected date and user
-    result = cur.execute("SELECT * FROM notes WHERE username=%s AND date_day=%s AND date_month=%s AND date_year=%s", (session['username'], day, month, year))
-
-    notes = cur.fetchall()
+    notes = Note.query.filter_by(username=session['username']).all()
 ##########################################################################################
 
 
@@ -301,7 +312,7 @@ def date(year, month, day):
 
 
 ##########################################################################################
-    cur.close()
+    # cur.close()
 ##########################################################################################
 
 
@@ -321,19 +332,23 @@ def create_note(year, month, day):
         body = form.body.data
 
 
-##########################################################################################
+##################################### INSERT INTO #####################################################
 
-        # Create cursor
-        cur = mysql.connection.cursor()
+        # # Create cursor
+        # cur = mysql.connection.cursor()
+        #
+        # # Execute db
+        # cur.execute("INSERT INTO notes(username, title, body, date_day, date_month, date_year) VALUES(%s, %s, %s, %s, %s, %s);", (session['username'], title, body, day, month, year))
+        #
+        # # Commit to db
+        # mysql.connection.commit()
+        #
+        # # Close connection
+        # cur.close()
 
-        # Execute db
-        cur.execute("INSERT INTO notes(username, title, body, date_day, date_month, date_year) VALUES(%s, %s, %s, %s, %s, %s);", (session['username'], title, body, day, month, year))
-
-        # Commit to db
-        mysql.connection.commit()
-
-        # Close connection
-        cur.close()
+        note = Note(session['username'], title, body, day, month, year)
+        db.session.add(note)
+        db.session.commit()
 
 ##########################################################################################
 
@@ -351,15 +366,18 @@ def edit_note(id):
 
 
 
-##########################################################################################
+########################################## SELECT ################################################
 
-    # Create cursor
-    cur = mysql.connection.cursor()
+    # # Create cursor
+    # cur = mysql.connection.cursor()
+    #
+    # # Get article by ID and username
+    # result = cur.execute("SELECT * FROM notes WHERE id=%s AND username=%s", [id, session['username']])
+    #
+    # note = cur.fetchone()
 
-    # Get article by ID and username
-    result = cur.execute("SELECT * FROM notes WHERE id=%s AND username=%s", [id, session['username']])
-
-    note = cur.fetchone()
+    # need to add username condition here also
+    note = Note.query.filter_by(id=id).fetchone
 
 ##########################################################################################
 
@@ -386,19 +404,22 @@ def edit_note(id):
 
 
 
-##########################################################################################
+########################################### SELECT AND INSERT (EDIT) #############################################
 
-        # Create cursor
-        cur = mysql.connection.cursor()
+        # # Create cursor
+        # cur = mysql.connection.cursor()
+        #
+        # # Execute db
+        # cur.execute("UPDATE notes SET title=%s, body=%s WHERE id=%s AND username=%s", (title, body, id, session['username']))
+        #
+        # # Commit to db
+        # mysql.connection.commit()
+        #
+        # # Close connection
+        # cur.close()
 
-        # Execute db
-        cur.execute("UPDATE notes SET title=%s, body=%s WHERE id=%s AND username=%s", (title, body, id, session['username']))
 
-        # Commit to db
-        mysql.connection.commit()
-
-        # Close connection
-        cur.close()
+        ## COME BACK TO THIS ONE
 
 ##########################################################################################
 
@@ -421,15 +442,18 @@ def delete_article(id):
 
 
 
-##########################################################################################
+############################################ SELECT AND SAVE##############################################
 
-    # Create cursor
-    cur = mysql.connection.cursor()
+    # # Create cursor
+    # cur = mysql.connection.cursor()
+    #
+    # # Execute - retrieve information for return journey
+    # cur.execute('SELECT * FROM notes WHERE id=%s AND username=%s', [id, session['username']])
+    #
+    # note = cur.fetchone()
 
-    # Execute - retrieve information for return journey
-    cur.execute('SELECT * FROM notes WHERE id=%s AND username=%s', [id, session['username']])
-
-    note = cur.fetchone()
+    # Need to add another condition parameter here
+    note = Note.query.filter_by(id=id).fetchone()
 
 ##########################################################################################
 
@@ -443,16 +467,20 @@ def delete_article(id):
 
 
 
-##########################################################################################
+########################################### DELETE ###############################################
 
-    # Execute - remove from db
-    cur.execute('DELETE FROM notes WHERE id=%s AND username=%s', [id, session['username']])
+    # # Execute - remove from db
+    # cur.execute('DELETE FROM notes WHERE id=%s AND username=%s', [id, session['username']])
+    #
+    # # Commit to db
+    # mysql.connection.commit()
+    #
+    # # Close connection
+    # cur.close()
 
-    # Commit to db
-    mysql.connection.commit()
-
-    # Close connection
-    cur.close()
+    # note object still from above...
+    db.session.delete(note)
+    db.session.commit()
 
 ##########################################################################################
 
