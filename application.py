@@ -15,7 +15,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 db = SQLAlchemy(app)
 
 class User(db.Model):
-    username = db.Column(db.String(50))
+    username = db.Column(db.String(50), primary_key=True)
     email = db.Column(db.String(50))
     password = db.Column(db.String(100))
 
