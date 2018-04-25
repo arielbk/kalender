@@ -1,6 +1,6 @@
 from flask import Flask, render_template, flash, redirect, url_for, session, request
 from wtforms import Form, StringField, TextAreaField, PasswordField, validators
-from flask_sqlalchemy import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy, or_
 from passlib.hash import sha256_crypt
 from functools import wraps
 import datetime, calendar
@@ -133,7 +133,7 @@ def make_calendar(month, year):
         # notes = cur.fetchall()
 
         # need to add in other parameters obviously
-        notes = Note.query.filter_by(username=session['username']).all()
+        notes = Note.query.filter_by(username=session['username'], date_month=current_month, date_year=current_year).all()
 ##########################################################################################
 
 
@@ -377,7 +377,7 @@ def edit_note(id):
     # note = cur.fetchone()
 
     # need to add username condition here also
-    note = Note.query.filter_by(id=id).fetchone
+    note = Note.query.filter_by(id=id, username=session['username']).fetchone
 
 ##########################################################################################
 
@@ -453,7 +453,7 @@ def delete_article(id):
     # note = cur.fetchone()
 
     # Need to add another condition parameter here
-    note = Note.query.filter_by(id=id).fetchone()
+    note = Note.query.filter_by(id=id, username=session['user']).fetchone()
 
 ##########################################################################################
 
