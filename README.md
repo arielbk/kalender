@@ -20,6 +20,6 @@ CS50 has been the best online course I have taken. It introduced me to programmi
 
 I followed a video by [Traversy Media](https://www.youtube.com/channel/UC29ju8bIPH5as8OGnQzwJyA) which outlined creating a basic Flask app from scratch, and it was really helpful to get a grasp of many of the concepts. Most of the plugins I use in the app are directly from this short series, which were really helpful and insightful to follow along with before I dove into this project (which seemed daunting to me to begin with!). I have since watched a couple of other videos from him and they are really helpful and accessible for someone starting out in web development.
 
-## Deployment
+## Demonstration
 
-Kalender will soon be available on Heroku.
+Deployed on Heroku at: https://kalender-deploy.herokuapp.com/
