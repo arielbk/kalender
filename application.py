@@ -180,7 +180,7 @@ def register():
         # # Close connection
         # cur.close()
 
-        user = User(username, email, password)
+        user = User(username=username, email=email, password=password)
         db.session.add(user)
         db.session.commit()
 ##########################################################################################
@@ -346,7 +346,7 @@ def create_note(year, month, day):
         # # Close connection
         # cur.close()
 
-        note = Note(session['username'], title, body, day, month, year)
+        note = Note(username=session['username'], title=title, body=body, date_day=day, date_month=month, date_year=year)
         db.session.add(note)
         db.session.commit()
 
