@@ -19,8 +19,10 @@ class User(db.Model):
     email = db.Column(db.String(50))
     password = db.Column(db.String(100))
 
-    def __init__(self, name):
-        self.name = name
+    def __init__(self, username, email, password):
+        self.username = username
+        self.email = email
+        self.password = password
 
 class Note(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -31,8 +33,13 @@ class Note(db.Model):
     date_month = db.Column(db.Integer)
     date_year = db.Column(db.Integer)
 
-    def __init__(self, name):
-        self.name = name
+    def __init__(self, username, title, body, date_day, date_month, date_year):
+        self.username = username
+        self.title = title
+        self.body = body
+        self.date_day = date_day
+        self.date_month = date_month
+        self.date_year = date_year
 
 
 # Define names for the months of the year
