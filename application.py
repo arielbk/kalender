@@ -7,6 +7,7 @@ import datetime, calendar
 import os
 
 app = Flask(__name__)
+app.secret_key = 'secret'
 
 # Setting up PostgreSQL with SQLAlchemy
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -492,11 +493,8 @@ def delete_article(id):
 ##########################################################################################
 
 
-
-
     flash('Note deleted', 'success')
     return date(year, month, day)
 
 if __name__ == '__main__':
-    app.secret_key = 'secret'
     app.run(debug=True)
