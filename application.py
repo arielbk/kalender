@@ -287,9 +287,6 @@ def date(year, month, day):
     # Display the string name for the chosen date
     selected_month_name = month_name(month)
 
-
-
-
 ########################################## SELECT AND SAVE ################################################
 
     # # Create cursor
@@ -303,12 +300,7 @@ def date(year, month, day):
     notes = Note.query.filter_by(username=session['username']).all()
 ##########################################################################################
 
-
-
-
-
-
-    if result > 0:
+    if notes:
         return render_template('date.html', notes=notes,
             year=year, month=month, selected_month_name=selected_month_name, day=day)
     else:
