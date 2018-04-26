@@ -229,7 +229,7 @@ def login():
 
             # # Get stored hash
             # data = cur.fetchone()
-            password = result['password']
+            password = result.password
 
             # Compare candidate and stored hash
             if sha256_crypt.verify(password_candidate, password):
@@ -385,7 +385,7 @@ def edit_note(id):
     # note = cur.fetchone()
 
     # need to add username condition here also
-    note = Note.query.filter_by(id=id, username=session['username']).fetchone
+    note = Note.query.filter_by(id=id, username=session['username']).first()
 
 ##########################################################################################
 
@@ -394,9 +394,9 @@ def edit_note(id):
 
 
     # Details to use on the page
-    year = note['date_year']
-    month = note['date_month']
-    day = note['date_day']
+    year = note.date_year
+    month = note.date_month
+    day = note.date_day
     selected_month_name = month_name(month)
 
     # Get form
@@ -461,7 +461,7 @@ def delete_article(id):
     # note = cur.fetchone()
 
     # Need to add another condition parameter here
-    note = Note.query.filter_by(id=id, username=session['user']).fetchone()
+    note = Note.query.filter_by(id=id, username=session['user']).first()
 
 ##########################################################################################
 
