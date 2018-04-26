@@ -3,6 +3,7 @@ from wtforms import Form, StringField, TextAreaField, PasswordField, validators
 from flask_sqlalchemy import SQLAlchemy
 from passlib.hash import sha256_crypt
 from functools import wraps
+from app import User, Note
 import datetime, calendar
 import os
 
@@ -180,7 +181,7 @@ def register():
         # # Close connection
         # cur.close()
 
-        user = User(username=username, email=email, password=password)
+        user = User(username, email, password)
         db.session.add(user)
         db.session.commit()
 ##########################################################################################
@@ -346,7 +347,7 @@ def create_note(year, month, day):
         # # Close connection
         # cur.close()
 
-        note = Note(username=session['username'], title=title, body=body, date_day=day, date_month=month, date_year=year)
+        note = Note(session['username'], title, body, day, month, year)
         db.session.add(note)
         db.session.commit()
 
