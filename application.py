@@ -3,7 +3,7 @@ from wtforms import Form, StringField, TextAreaField, PasswordField, validators
 from flask_sqlalchemy import SQLAlchemy
 from passlib.hash import sha256_crypt
 from functools import wraps
-from app import User, Note
+from application import User, Note
 import datetime, calendar
 import os
 
