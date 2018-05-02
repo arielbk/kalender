@@ -56,9 +56,12 @@ table {
 $eerie: #191919;
 $english: #c14641;
 $gold: #cca559;
+$creme: #ffe;
 $river: #0a3847;
 $sapphire: #1e6870;
-
+$grey: #818181;
+$lightgrey: #c0c0c0;
+$babe: #98babe;
 
 /*----------------------------------------------------------------------------/*
 
@@ -105,7 +108,7 @@ body {
 }
 .form-box {
   border-radius: 5px;
-  background-color: #ffe;
+  background-color: $creme;
   box-shadow: 0 10px 30px #000;
 	margin: 60px auto;
 }
@@ -140,7 +143,7 @@ header h1 {
 header h2 {
 	font-size: 2.5em;
 	font-weight: 200;
-	color: #818181;
+	color: $grey;
 	display: inline-block;
 	float: right;
 	margin-right: 7.5%;
@@ -150,7 +153,7 @@ header h2 {
 h3,
 h3 a {
 	font-size: 1.7em;
-	color: #818181;
+	color: $grey;
 	margin-top: 22px;
 }
 
@@ -177,7 +180,7 @@ thead {
 th {
 	background: $river;
 	padding: 22px;
-	color: #ffe;
+	color: $creme;
 	font-weight: 100;
 	font-size: 1.2em;
 	text-align: center;
@@ -189,7 +192,7 @@ th:last-child {
 	border-radius: 0 5px 0 0;
 }
 td {
-	background: #ffe;
+	background: $creme;
 	color: $eerie;
 	padding: 44px;
 }
@@ -218,7 +221,7 @@ tfoot tr:last-child td:last-child {
 	text-align: center;
 	padding: 0;
 	height: 100px;
-	overflow: scroll;
+  overflow: hidden;
 }
 .main-calendar td a {
 	color: $eerie;
@@ -226,10 +229,9 @@ tfoot tr:last-child td:last-child {
 	display: block;
 	width: 100%;
 	height: 100px;
-	overflow: scroll;
 }
 .main-calendar td a:hover {
-  background: #98babe;
+  background: $babe;
 	text-decoration: none;
 	color: $river;
 }
@@ -238,13 +240,13 @@ tfoot tr:last-child td:last-child {
 	color: $eerie;
 }
 .other-month a {
-  background: #c0c0c0;
-  color: #818181;
+  background: $lightgrey;
+  color: $grey;
 }
 .small-titles {
 	margin-top: 10px;
-	background-color: #98babe;
-	border-radius: 7px;;
+	background-color: $babe;
+	border-radius: 7px;
 }
 .small-titles li {
 	list-style-type: square;
@@ -258,8 +260,9 @@ tfoot h3 {
 	font-size: 40px;
 	font-weight: 200;
 }
-.month-selector-other a {
-	color: #fff;
+h3.month-selector-other a {
+  height: 100%;
+  color: $lightgrey;
 	font-size: 0.7em;
 	margin: 0;
 }
@@ -295,7 +298,7 @@ input {
 }
 .form-fields input {
   background: #fff;
-  border: 1px solid #c6c7cc;
+  border: 1px solid $lightgrey;
   box-shadow: inset 1px 2px rgba(0, 0, 0, .1);
   color: $eerie;
   padding: 6px;
@@ -309,7 +312,7 @@ input {
   border-radius: 0 0 5px 5px;
 }
 .form-action label {
-  color: #ffe;
+  color: $creme;
   font-size: 12px;
   float: left;
   margin: 10px 0 0 20px;
@@ -332,14 +335,14 @@ input {
 .btn-create:hover,
 .form-action .btn:hover {
 	background: $eerie;
-	color: #ffe;
+	color: $creme;
 }
 .btn-delete {
 	background: $english;
 }
 .btn-edit {
 	background: $eerie;
-	color: #ffe;
+	color: $creme;
 }
 
 
