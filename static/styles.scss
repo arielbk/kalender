@@ -2,6 +2,7 @@
    v2.0 | 20110126
    License: none (public domain)
 */
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -15,41 +16,35 @@ article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
 }
-
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
-  display: block;
+	display: block;
 }
-
 body {
-  line-height: 1;
+	line-height: 1;
 }
-
 ol, ul {
-  list-style: none;
+	list-style: none;
 }
-
 blockquote, q {
-  quotes: none;
+	quotes: none;
 }
-
 blockquote:before, blockquote:after,
 q:before, q:after {
-  content: "";
-  content: none;
+	content: '';
+	content: none;
 }
-
 table {
-  border-collapse: collapse;
-  border-spacing: 0;
+	border-collapse: collapse;
+	border-spacing: 0;
 }
 
 /*----------------------------------------------------------------------------/*
@@ -57,20 +52,28 @@ table {
                                               COLOUR PALETTE ->
 
 ==========================================================================*/
+
+$eerie: #191919;
+$english: #c14641;
+$gold: #cca559;
+$river: #0a3847;
+$sapphire: #1e6870;
+
+
 /*----------------------------------------------------------------------------/*
 
                                               CUSTOM STYLES BEGIN ->
 
 ==========================================================================*/
+
 html {
   min-height: 100%;
 }
-
 body {
   font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  background-color: #191919;
+  background-color: $eerie;
   font-size: 16px;
-  color: #191919;
+  color: $eerie;
 }
 
 /*----------------------------------------------------------------------------/*
@@ -78,44 +81,40 @@ body {
                                               LAYOUT ->
 
 ==========================================================================*/
+
 *,
 *::before,
 *::after {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+          box-sizing: border-box;
 }
-
 .main-container {
   height: 100%;
   width: 100%;
   position: absolute;
   margin: 0 auto;
 }
-
 .main-window {
   border-radius: 5px;
-  background-color: #0a3847;
+  background-color: $river;
   min-width: 810px;
   width: 85%;
   margin: 22px auto;
   box-shadow: 0 10px 30px #000;
 }
-
 .form-box {
   border-radius: 5px;
   background-color: #ffe;
   box-shadow: 0 10px 30px #000;
-  margin: 60px auto;
+	margin: 60px auto;
 }
-
 .form-box-small {
-  width: 300px;
+	width: 300px;
 }
-
 .form-box-large {
-  width: 85%;
-  min-width: 810px;
+	width: 85%;
+	min-width: 810px;
 }
 
 /*----------------------------------------------------------------------------/*
@@ -123,43 +122,43 @@ body {
                                               TYPOGRAPHY ->
 
 ==========================================================================*/
+
 h1 {
   font-size: 4em;
-  color: #c14641;
+  color: $english;
 }
 
 header h1 {
-  margin: 40px 0 0 7.5%;
+	margin: 40px 0 0 7.5%;
   text-shadow: 2px 2px 17px #000;
-  display: inline-block;
-  font-weight: 200;
-  text-transform: uppercase;
-  letter-spacing: -1px;
+	display: inline-block;
+	font-weight: 200;
+	text-transform: uppercase;
+	letter-spacing: -1px;
 }
 
 header h2 {
-  font-size: 2.5em;
-  font-weight: 200;
-  color: #818181;
-  display: inline-block;
-  float: right;
-  margin-right: 7.5%;
-  padding-top: 80px;
+	font-size: 2.5em;
+	font-weight: 200;
+	color: #818181;
+	display: inline-block;
+	float: right;
+	margin-right: 7.5%;
+	padding-top: 80px;
 }
 
 h3,
 h3 a {
-  font-size: 1.7em;
-  color: #818181;
-  margin-top: 22px;
+	font-size: 1.7em;
+	color: #818181;
+	margin-top: 22px;
 }
 
 h3 a:hover {
-  color: #c14641;
+	color: $english;
 }
-
 strong {
-  font-weight: 600;
+	font-weight: 600;
 }
 
 /*----------------------------------------------------------------------------/*
@@ -167,51 +166,44 @@ strong {
                                               TABLES ->
 
 ==========================================================================*/
+
 table {
   width: 100%;
-  vertical-align: top;
+	vertical-align: top;
 }
-
 thead {
-  border-radius: 5px;
+	border-radius: 5px;
 }
-
 th {
-  background: #0a3847;
-  padding: 22px;
-  color: #ffe;
-  font-weight: 100;
-  font-size: 1.2em;
-  text-align: center;
+	background: $river;
+	padding: 22px;
+	color: #ffe;
+	font-weight: 100;
+	font-size: 1.2em;
+	text-align: center;
 }
-
 th:first-child {
-  border-radius: 5px 0 0 0;
+	border-radius: 5px 0 0 0;
 }
-
 th:last-child {
-  border-radius: 0 5px 0 0;
+	border-radius: 0 5px 0 0;
 }
-
 td {
-  background: #ffe;
-  color: #191919;
-  padding: 44px;
+	background: #ffe;
+	color: $eerie;
+	padding: 44px;
 }
-
 tfoot td {
-  background: #0a3847;
-  border-top: solid 1px #191919;
-  padding: 22px;
+	background: $river;
+	border-top: solid 1px $eerie;
+	padding: 22px;
 }
-
 tfoot tr:last-child td:first-child {
-  text-align: left;
+	text-align: left;
   border-radius: 0 0 0 5px;
 }
-
 tfoot tr:last-child td:last-child {
-  text-align: right;
+	text-align: right;
   border-radius: 0 0 5px 0;
 }
 
@@ -220,63 +212,56 @@ tfoot tr:last-child td:last-child {
                                               MAIN CALENDAR ->
 
 ==========================================================================*/
+
 .main-calendar td {
   width: 14%;
-  text-align: center;
-  padding: 0;
-  height: 100px;
-  overflow: scroll;
+	text-align: center;
+	padding: 0;
+	height: 100px;
+	overflow: scroll;
 }
-
 .main-calendar td a {
-  color: #191919;
-  padding: 22px;
-  display: block;
-  width: 100%;
-  height: 100px;
-  overflow: scroll;
+	color: $eerie;
+	padding: 22px;
+	display: block;
+	width: 100%;
+	height: 100px;
+	overflow: scroll;
 }
-
 .main-calendar td a:hover {
   background: #98babe;
-  text-decoration: none;
-  color: #0a3847;
+	text-decoration: none;
+	color: $river;
 }
-
 .today-highlight a {
-  background: #cca559;
-  color: #191919;
+	background: $gold;
+	color: $eerie;
 }
-
 .other-month a {
   background: #c0c0c0;
   color: #818181;
 }
-
 .small-titles {
-  margin-top: 10px;
-  background-color: #98babe;
-  border-radius: 7px;
+	margin-top: 10px;
+	background-color: #98babe;
+	border-radius: 7px;;
 }
-
 .small-titles li {
-  list-style-type: square;
-  list-style-position: inside;
-  font-size: 0.8em;
-  line-height: 1.5em;
-  color: #191919;
+	list-style-type: square;
+	list-style-position: inside;
+	font-size: 0.8em;
+	line-height: 1.5em;
+	color: $eerie;
 }
-
 tfoot h3 {
-  color: #cca559;
-  font-size: 40px;
-  font-weight: 200;
+	color: $gold;
+	font-size: 40px;
+	font-weight: 200;
 }
-
 .month-selector-other a {
-  color: #fff;
-  font-size: 0.7em;
-  margin: 0;
+	color: #fff;
+	font-size: 0.7em;
+	margin: 0;
 }
 
 /*----------------------------------------------------------------------------/*
@@ -284,107 +269,93 @@ tfoot h3 {
                                               FORMS ->
 
 ==========================================================================*/
+
 form {
   width: 100%;
   height: 100%;
 }
-
 fieldset {
   margin: 0;
   padding: 0;
   border: 0;
 }
-
 input {
   border-radius: 5px;
   font: 14px/1.4 "Helvetica Neue", Helvetica, Arial, sans-serif;
   margin: 0;
 }
-
 .form-fields {
   padding: 22px;
 }
-
 .form-fields label {
-  color: #0a3847;
+  color: $river;
   display: block;
   font-weight: bold;
   margin-bottom: 22px;
 }
-
 .form-fields input {
   background: #fff;
   border: 1px solid #c6c7cc;
-  box-shadow: inset 1px 2px rgba(0, 0, 0, 0.1);
-  color: #191919;
+  box-shadow: inset 1px 2px rgba(0, 0, 0, .1);
+  color: $eerie;
   padding: 6px;
   margin-top: 6px;
   width: 100%;
 }
-
 .form-action {
-  background: #0a3847;
-  border-top: solid 1px #191919;
+  background: $river;
+  border-top: solid 1px $eerie;
   padding: 22px;
   border-radius: 0 0 5px 5px;
 }
-
 .form-action label {
   color: #ffe;
   font-size: 12px;
   float: left;
   margin: 10px 0 0 20px;
 }
-
 .btn {
-  border: 0;
+	border: 0;
   cursor: pointer;
-  font-size: 1em;
+	font-size: 1em;
   font-weight: bold;
   padding: 8px 16px;
-  color: #191919;
+	color: $eerie;
 }
-
 .btn-create,
 .form-action .btn {
-  background: #cca559;
+  background: $gold;
 }
-
 .form-action .btn {
-  float: left;
+	float: left;
 }
-
 .btn-create:hover,
 .form-action .btn:hover {
-  background: #191919;
-  color: #ffe;
+	background: $eerie;
+	color: #ffe;
 }
-
 .btn-delete {
-  background: #c14641;
+	background: $english;
+}
+.btn-edit {
+	background: $eerie;
+	color: #ffe;
 }
 
-.btn-edit {
-  background: #191919;
-  color: #ffe;
-}
 
 /*----------------------------------------------------------------------------/*
 
                                               DATE NOTES TABLE ->
 
 ==========================================================================*/
+
 .datenote-title {
-  text-align: left;
+	text-align: left;
 }
-
 .datenote-description {
-  text-align: left;
+	text-align: left;
 }
-
 .datenote-options {
-  text-align: right;
-  padding: 22px;
+	text-align: right;
+	padding: 22px;
 }
-
-/*# sourceMappingURL=styles.css.map */
