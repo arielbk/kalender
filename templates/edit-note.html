@@ -2,9 +2,18 @@
 
 {% block body %}
 
-  <h2>
-    Create Note
-  </h2>
+<header>
+  <h1>
+    Edit note:
+  </h1>
+
+<h2>
+  {{ day }}{% if day == 1 or day == 21 or day == 31 %}st{% elif day == 2 or day == 22 %}nd{% elif day == 3 or day == 23 %}rd{% else %}th{% endif %}
+  {{ selected_month_name }},
+  {{ year }}
+</h2>
+</header>
+
   {% from "includes/_formhelpers.html" import render_field %}
   <section class="form-box form-box-large">
 

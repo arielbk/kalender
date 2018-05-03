@@ -281,12 +281,17 @@ def edit_note(id):
     form = NoteForm(request.form)
 
     # Populate note form fields
-    form.title.data = note['title']
-    form.body.data = note['body']
+    form.title.data = note.title
+    form.body.data = note.body
 
     if request.method == 'POST' and form.validate():
         title = request.form['title']
         body = request.form['body']
+
+        # Write new values to the db
+        note.title = title
+        note.body = body
+        db.session.commit()
 
         flash('Note updated', 'success')
         return date(year, month, day)
@@ -300,11 +305,11 @@ def edit_note(id):
 @login_required
 def delete_article(id):
 
-    note = Note.query.filter_by(id=id, username=session['user']).first()
+    note = Note.query.filter_by(id=id, username=session['username']).first()
 
-    year = note['date_year']
-    month = note['date_month']
-    day = note['date_day']
+    year = note.date_year
+    month = note.date_month
+    day = note.date_day
 
     # Execute deletion in the database
     db.session.delete(note)
