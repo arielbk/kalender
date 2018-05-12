@@ -1,8 +1,29 @@
-/* http://meyerweb.com/eric/tools/css/reset/
-   v2.0 | 20110126
-   License: none (public domain)
-*/
+$eerie: #191919;
+$english: #dd7975;
+$gold: #cca559;
+$creme: #ffe;
+$white: #eee;
+$river: #0a3847;
+$sapphire: #1e6870;
+$grey: #818181;
+$lightgrey: #c0c0c0;
+$babe: #98babe;
+$electric: #0056e2;
 
+/*
+Based on Eric Meyer's CSS reset:
+http://meyerweb.com/eric/tools/css/reset/
+*/
+a {
+	text-decoration: none;
+}
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -47,21 +68,6 @@ table {
 	border-spacing: 0;
 }
 
-/*----------------------------------------------------------------------------/*
-
-                                              COLOUR PALETTE ->
-
-==========================================================================*/
-
-$eerie: #191919;
-$english: #c14641;
-$gold: #cca559;
-$creme: #ffe;
-$river: #0a3847;
-$sapphire: #1e6870;
-$grey: #818181;
-$lightgrey: #c0c0c0;
-$babe: #98babe;
 
 /*----------------------------------------------------------------------------/*
 
@@ -85,18 +91,11 @@ body {
 
 ==========================================================================*/
 
-*,
-*::before,
-*::after {
-    -webkit-box-sizing: border-box;
-      -moz-box-sizing: border-box;
-          box-sizing: border-box;
-}
 .main-container {
   height: 100%;
   width: 100%;
   position: absolute;
-  margin: 0 auto;
+  margin: 22px auto 88px auto;
 }
 .main-window {
   border-radius: 5px;
@@ -128,12 +127,11 @@ body {
 
 h1 {
   font-size: 4em;
-  color: $english;
+  color: $river; //find me //find me
 }
 
 header h1 {
-	margin: 40px 0 0 7.5%;
-  text-shadow: 2px 2px 17px #000;
+	margin: 12px 0 0 7.5%;
 	display: inline-block;
 	font-weight: 200;
 	text-transform: uppercase;
@@ -147,7 +145,7 @@ header h2 {
 	display: inline-block;
 	float: right;
 	margin-right: 7.5%;
-	padding-top: 80px;
+	margin-top: 36px;
 }
 
 h3,
@@ -162,6 +160,16 @@ h3 a:hover {
 }
 strong {
 	font-weight: 600;
+}
+
+/*----------------------------------------------------------------------------/*
+
+                                              HEADER ->
+
+==========================================================================*/
+
+header {
+	background-color: $white;
 }
 
 /*----------------------------------------------------------------------------/*
@@ -239,13 +247,13 @@ tfoot tr:last-child td:last-child {
 	background: $gold;
 	color: $eerie;
 }
-.other-month a {
+td.other-month a {
   background: $lightgrey;
   color: $grey;
 }
 .small-titles {
 	margin-top: 10px;
-	background-color: $babe;
+	background-color: $english;
 	border-radius: 7px;
 }
 .small-titles li {
@@ -253,7 +261,7 @@ tfoot tr:last-child td:last-child {
 	list-style-position: inside;
 	font-size: 0.8em;
 	line-height: 1.5em;
-	color: $eerie;
+	color: $creme;
 }
 tfoot h3 {
 	color: $gold;
@@ -265,6 +273,12 @@ h3.month-selector-other a {
   color: $lightgrey;
 	font-size: 0.7em;
 	margin: 0;
+}
+h3.month-selector-other a:hover {
+  height: 100%;
+  color: $lightgrey;
+	background-color: $river;
+	border-bottom: 4px solid $lightgrey; //find me
 }
 
 /*----------------------------------------------------------------------------/*

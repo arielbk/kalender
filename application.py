@@ -72,21 +72,19 @@ def month_name(month_number):
     elif month_number == 12:
         return 'December'
 
+# Determine current date
+now = datetime.datetime.now()
+now_month_name = month_name(now.month)
+
 # Index
 @app.route('/')
 def home():
 
-    # Determine current date
-    now = datetime.datetime.now()
     return make_calendar(now.month, now.year)
 
 # Make calendar months
 @app.route('/<int:month>_<int:year>')
 def make_calendar(month, year):
-
-    # Determine current date
-    now = datetime.datetime.now()
-    now_month_name = month_name(now.month)
 
     # Set current month and year
     current_month = month
@@ -163,7 +161,7 @@ def register():
         flash('You are now registered. Proceed to login.', 'success')
 
         return redirect(url_for('login'))
-    return render_template('register.html', form=form)
+    return render_template('register.html', form=form, now=now, now_month_name=now_month_name)
 
 # Login
 @app.route('/login', methods=['GET', 'POST'])
@@ -192,14 +190,14 @@ def login():
 
                 # Did not pass
                 error = 'Invalid login'
-                return render_template('login.html', error=error)
+                return render_template('login.html', error=error, now=now, now_month_name=now_month_name)
 
         else:
 
             error = 'Username not found'
-            return render_template('login.html', error=error)
+            return render_template('login.html', error=error, now=now, now_month_name=now_month_name)
 
-    return render_template('login.html')
+    return render_template('login.html', now=now, now_month_name=now_month_name)
 
 # Check if user is logged in
 def login_required(f):
@@ -233,12 +231,12 @@ def date(year, month, day):
     if notes:
 
         return render_template('date.html', notes=notes,
-            year=year, month=month, selected_month_name=selected_month_name, day=day)
+            year=year, month=month, selected_month_name=selected_month_name, day=day, now=now, now_month_name=now_month_name)
     else:
 
         error = "No notes for selected date"
         return render_template('date.html', error=error,
-            year=year, month=month, selected_month_name=selected_month_name, day=day)
+            year=year, month=month, selected_month_name=selected_month_name, day=day, now=now, now_month_name=now_month_name)
 
 # Note form class
 class NoteForm(Form):
@@ -262,7 +260,7 @@ def create_note(year, month, day):
         flash('Note created', 'success')
         return date(year, month, day)
 
-    return render_template('create-note.html', form=form, year=year, month=month, selected_month_name=selected_month_name, day=day)
+    return render_template('create-note.html', form=form, year=year, month=month, selected_month_name=selected_month_name, day=day, now=now, now_month_name=now_month_name)
 
 # Update a note for a particular date
 @app.route('/edit-note_<string:id>', methods=['GET', 'POST'])
@@ -296,9 +294,7 @@ def edit_note(id):
         flash('Note updated', 'success')
         return date(year, month, day)
 
-    return render_template('edit-note.html', form=form)
-
-    return render_template('edit-note.html', form=form, year=year, month=month, selected_month_name=selected_month_name, day=day)
+    return render_template('edit-note.html', form=form, year=year, month=month, selected_month_name=selected_month_name, day=day, now=now, now_month_name=now_month_name)
 
 # Delete a particular note
 @app.route('/delete-note_<string:id>')

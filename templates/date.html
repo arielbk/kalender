@@ -1,18 +1,6 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-<header>
-  <h1>
-    Notes:
-  </h1>
-
-<h2>
-  {{ day }}{% if day == 1 or day == 21 or day == 31 %}st{% elif day == 2 or day == 22 %}nd{% elif day == 3 or day == 23 %}rd{% else %}th{% endif %}
-  {{ selected_month_name }},
-  {{ year }}
-</h2>
-</header>
-
 <section class="main-window">
   <table>
     <thead>
@@ -45,6 +33,4 @@
 
 </table>
 </section>
-
-</header>
 {% endblock %}

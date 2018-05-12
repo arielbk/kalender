@@ -2,17 +2,11 @@
 
 {% block body %}
 
-<header>
-  <h1>
-    Edit note:
-  </h1>
-
 <h2>
   {{ day }}{% if day == 1 or day == 21 or day == 31 %}st{% elif day == 2 or day == 22 %}nd{% elif day == 3 or day == 23 %}rd{% else %}th{% endif %}
   {{ selected_month_name }},
   {{ year }}
 </h2>
-</header>
 
   {% from "includes/_formhelpers.html" import render_field %}
   <section class="form-box form-box-large">
@@ -31,5 +25,14 @@
       </fieldset>
     </form>
   </section>
+
+  <script src="https://cdn.ckeditor.com/ckeditor5/1.0.0-beta.3/classic/ckeditor.js"></script>
+  <script type="text/javascript">
+    ClassicEditor
+        .create( document.querySelector( '#editor' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+  </script>
 
 {% endblock %}
