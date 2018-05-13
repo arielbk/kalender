@@ -146,28 +146,32 @@ strong {
 
 header {
 	background-color: $white;
+	height: 50px;
+	width: 100%;
 }
-#main-title {
-	margin: 6px 0 9px 7.5%;
-	display: inline-block;
-	font-weight: 200;
-	letter-spacing: -1px;
-	transition: 0.3s;
+// Clearfix for today's date float
+header::after {
+	content: "";
+	clear: both;
+	display: table;
 }
 header h2 {
-	font-size: 2.5em;
+	font-size: 2.2em;
 	font-weight: 200;
-	color: $grey;
+	color: $river;
 	display: inline-block;
 	float: right;
 	margin-right: 7.5%;
-	margin-top: 22px;
+	margin-top: 9px;
+}
+header a {
+	color: $river;
 }
 #nav-icon {
 	display: inline-block;
-	margin-left: 28px;
+	margin-left: 7.5%;
 	margin-right: -69px;
-	margin-top: -12px;
+	margin-top: 12px;
 	padding-bottom: 22px;
 }
 nav#side-nav {
@@ -312,16 +316,18 @@ h3.month-selector-other a {
 	font-size: 0.7em;
 	margin: 0;
 }
-h3.month-selector-other a:hover {
+.arrow {
+	color: $eerie;
+	padding: 0 12px 8px 12px;
+}
+h3.month-selector-other a:hover,
+h3.month-selector-other .arrow a:hover {
   height: 100%;
   color: $lightgrey;
 	background-color: $river;
 	border-bottom: 4px solid $lightgrey; //find me
 }
-.arrow {
-	color: $eerie;
-	padding: 0 12px;
-}
+
 
 /*----------------------------------------------------------------------------/*
 
@@ -399,6 +405,18 @@ input {
 .btn-edit {
 	background: $eerie;
 	color: $creme;
+}
+
+.btn-select {
+	background: $eerie;
+	color: $gold;
+}
+form select {
+	font-size: 1.5em;
+	background: $eerie;
+	color: $creme;
+	border-radius: 0;
+	border-color: $grey;
 }
 
 

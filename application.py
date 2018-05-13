@@ -88,6 +88,15 @@ def about():
 
     return render_template('about.html', now=now, now_month_name=now_month_name)
 
+# Select a date
+@app.route('/select-date', methods=['POST'])
+def select_date():
+
+    if request.method == 'POST':
+        month = int(request.form['month'])
+        year = int(request.form['year'])
+        return make_calendar(month, year);
+
 # Make calendar months
 @app.route('/<int:month>_<int:year>')
 def make_calendar(month, year):
@@ -131,6 +140,7 @@ def make_calendar(month, year):
             cal_month[(len(cal_month)-1)][i] = 32 * cal_month_next[0][i]
 
     notes = []
+
     if ('logged_in' in session):
 
         # Populate calendar with saved note titles

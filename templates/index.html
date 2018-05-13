@@ -20,7 +20,7 @@
             {% if day > 31 %}
               {% if day == 32 %} <!-- if the cell is 1st of next month -->
                 <td class="other-month">
-                  
+
                     1 {{ month_name_next }}
 
                 </td>
@@ -83,7 +83,32 @@
     <td colspan="2">
       <h3 class="month-selector-other"><a href="{{month_prev}}_{% if month_prev == 12 %}{{current_year-1}}{% else %}{{current_year}}{% endif %}"><span class="arrow">&lt;</span> {{ month_name_prev }}</a></h3>
     </td>
-    <td colspan="3"><h3>{{ month_name_current }} {{ current_year }}</h3></td>
+    <td colspan="3">
+
+      <form id="date-chooser" method="POST" action="/select-date">
+        <select name="month">
+          <option value="1" {% if current_month == 1 %}selected{% endif %}>January</option>
+          <option value="2" {% if current_month == 2 %}selected{% endif %}>February</option>
+          <option value="3" {% if current_month == 3 %}selected{% endif %}>March</option>
+          <option value="4" {% if current_month == 4 %}selected{% endif %}>April</option>
+          <option value="5" {% if current_month == 5 %}selected{% endif %}>May</option>
+          <option value="6" {% if current_month == 6 %}selected{% endif %}>June</option>
+          <option value="7" {% if current_month == 7 %}selected{% endif %}>July</option>
+          <option value="8" {% if current_month == 8 %}selected{% endif %}>August</option>
+          <option value="9" {% if current_month == 9 %}selected{% endif %}>September</option>
+          <option value="10" {% if current_month == 10 %}selected{% endif %}>October</option>
+          <option value="11" {% if current_month == 11 %}selected{% endif %}>November</option>
+          <option value="12" {% if current_month == 12 %}selected{% endif %}>December</option>
+        </select>
+        <select name="year">
+          {% for i in range(200) %}
+          <option value="{{1900+i}}" {% if current_year == 1900+i %}selected{% endif %}>{{1900+i}}</option>
+          {% endfor %}
+        </select>
+        <button type="submit" class="btn btn-select">Change</button>
+      </form>
+
+    </td>
     <td colspan="2">
       <h3 class="month-selector-other"><a href="{{month_next}}_{% if month_next == 1 %}{{current_year+1}}{% else %}{{current_year}}{% endif %}">{{ month_name_next }} <span class="arrow">&gt;</span></a></h3>
     </td>

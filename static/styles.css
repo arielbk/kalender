@@ -144,31 +144,35 @@ strong {
 ==========================================================================*/
 header {
   background-color: #eee;
+  height: 50px;
+  width: 100%;
 }
 
-#main-title {
-  margin: 6px 0 9px 7.5%;
-  display: inline-block;
-  font-weight: 200;
-  letter-spacing: -1px;
-  transition: 0.3s;
+header::after {
+  content: "";
+  clear: both;
+  display: table;
 }
 
 header h2 {
-  font-size: 2.5em;
+  font-size: 2.2em;
   font-weight: 200;
-  color: #818181;
+  color: #0a3847;
   display: inline-block;
   float: right;
   margin-right: 7.5%;
-  margin-top: 22px;
+  margin-top: 9px;
+}
+
+header a {
+  color: #0a3847;
 }
 
 #nav-icon {
   display: inline-block;
-  margin-left: 28px;
+  margin-left: 7.5%;
   margin-right: -69px;
-  margin-top: -12px;
+  margin-top: 12px;
   padding-bottom: 22px;
 }
 
@@ -333,16 +337,17 @@ h3.month-selector-other a {
   margin: 0;
 }
 
-h3.month-selector-other a:hover {
+.arrow {
+  color: #191919;
+  padding: 0 12px 8px 12px;
+}
+
+h3.month-selector-other a:hover,
+h3.month-selector-other .arrow a:hover {
   height: 100%;
   color: #c0c0c0;
   background-color: #0a3847;
   border-bottom: 4px solid #c0c0c0;
-}
-
-.arrow {
-  color: #191919;
-  padding: 0 12px;
 }
 
 /*----------------------------------------------------------------------------/*
@@ -433,6 +438,19 @@ input {
 .btn-edit {
   background: #191919;
   color: #ffe;
+}
+
+.btn-select {
+  background: #191919;
+  color: #cca559;
+}
+
+form select {
+  font-size: 1.5em;
+  background: #191919;
+  color: #ffe;
+  border-radius: 0;
+  border-color: #818181;
 }
 
 /*----------------------------------------------------------------------------/*
