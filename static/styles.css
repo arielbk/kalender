@@ -69,10 +69,6 @@ table {
                                               CUSTOM STYLES BEGIN ->
 
 ==========================================================================*/
-html {
-  min-height: 100%;
-}
-
 body {
   font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   background-color: #191919;
@@ -86,10 +82,9 @@ body {
 
 ==========================================================================*/
 .main-container {
-  height: 100%;
   width: 100%;
   position: absolute;
-  margin: 22px auto 88px auto;
+  margin: 22px auto 22px auto;
 }
 
 .main-window {
@@ -127,24 +122,6 @@ h1 {
   color: #0a3847;
 }
 
-header h1 {
-  margin: 12px 0 0 7.5%;
-  display: inline-block;
-  font-weight: 200;
-  text-transform: uppercase;
-  letter-spacing: -1px;
-}
-
-header h2 {
-  font-size: 2.5em;
-  font-weight: 200;
-  color: #818181;
-  display: inline-block;
-  float: right;
-  margin-right: 7.5%;
-  margin-top: 36px;
-}
-
 h3,
 h3 a {
   font-size: 1.7em;
@@ -167,6 +144,73 @@ strong {
 ==========================================================================*/
 header {
   background-color: #eee;
+}
+
+header h1 {
+  margin: 6px 0 9px 7.5%;
+  display: inline-block;
+  font-weight: 200;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+}
+
+header h2 {
+  font-size: 2.5em;
+  font-weight: 200;
+  color: #818181;
+  display: inline-block;
+  float: right;
+  margin-right: 7.5%;
+  margin-top: 22px;
+}
+
+#nav-icon {
+  padding-left: 32px;
+  margin-right: -69px;
+  margin-top: -12px;
+}
+
+nav#side-nav {
+  color: #ffe;
+  width: 0;
+  background: #191919;
+  color: #gold;
+  height: 100%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  opacity: 0.95;
+  overflow-x: hidden;
+  padding-top: 88px;
+  transition: 0.3s;
+}
+
+nav#side-nav a {
+  color: #ffe;
+  display: block;
+  margin: 0 0 44px 44px;
+  font-size: 1.3em;
+  transition: 0.2s;
+}
+
+nav#side-nav a:hover,
+nav#side-nav a:focus {
+  color: #cca559;
+}
+
+nav#side-nav #nav-close {
+  font-size: 2em;
+  position: absolute;
+  top: 44px;
+  right: 44px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+nav#side-nav #nav-close:hover,
+nav#side-nav #nav-close:focus {
+  color: #dd7975;
 }
 
 /*----------------------------------------------------------------------------/*
@@ -231,7 +275,7 @@ tfoot tr:last-child td:last-child {
   width: 14%;
   text-align: center;
   padding: 0;
-  height: 100px;
+  height: 72px;
   overflow: hidden;
 }
 
@@ -277,6 +321,7 @@ tfoot h3 {
   color: #cca559;
   font-size: 40px;
   font-weight: 200;
+  margin-top: 6px;
 }
 
 h3.month-selector-other a {
@@ -291,6 +336,11 @@ h3.month-selector-other a:hover {
   color: #c0c0c0;
   background-color: #0a3847;
   border-bottom: 4px solid #c0c0c0;
+}
+
+.arrow {
+  color: #191919;
+  padding: 0 12px;
 }
 
 /*----------------------------------------------------------------------------/*

@@ -81,11 +81,11 @@
 <tfoot>
   <tr>
     <td colspan="2">
-      <h3 class="month-selector-other"><a href="{{month_prev}}_{% if month_prev == 12 %}{{current_year-1}}{% else %}{{current_year}}{% endif %}">{{ month_name_prev }}</a></h3>
+      <h3 class="month-selector-other"><a href="{{month_prev}}_{% if month_prev == 12 %}{{current_year-1}}{% else %}{{current_year}}{% endif %}"><span class="arrow">&lt;</span> {{ month_name_prev }}</a></h3>
     </td>
     <td colspan="3"><h3>{{ month_name_current }} {{ current_year }}</h3></td>
     <td colspan="2">
-      <h3 class="month-selector-other"><a href="{{month_next}}_{% if month_next == 1 %}{{current_year+1}}{% else %}{{current_year}}{% endif %}">{{ month_name_next }}</a></h3>
+      <h3 class="month-selector-other"><a href="{{month_next}}_{% if month_next == 1 %}{{current_year+1}}{% else %}{{current_year}}{% endif %}">{{ month_name_next }} <span class="arrow">&gt;</span></a></h3>
     </td>
   </tr>
 </tfoot>

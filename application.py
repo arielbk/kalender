@@ -82,6 +82,12 @@ def home():
 
     return make_calendar(now.month, now.year)
 
+# About
+@app.route('/about')
+def about():
+
+    return render_template('about.html', now=now, now_month_name=now_month_name)
+
 # Make calendar months
 @app.route('/<int:month>_<int:year>')
 def make_calendar(month, year):

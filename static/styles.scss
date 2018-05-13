@@ -75,9 +75,6 @@ table {
 
 ==========================================================================*/
 
-html {
-  min-height: 100%;
-}
 body {
   font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   background-color: $eerie;
@@ -92,10 +89,9 @@ body {
 ==========================================================================*/
 
 .main-container {
-  height: 100%;
   width: 100%;
   position: absolute;
-  margin: 22px auto 88px auto;
+  margin: 22px auto 22px auto;
 }
 .main-window {
   border-radius: 5px;
@@ -129,32 +125,12 @@ h1 {
   font-size: 4em;
   color: $river; //find me //find me
 }
-
-header h1 {
-	margin: 12px 0 0 7.5%;
-	display: inline-block;
-	font-weight: 200;
-	text-transform: uppercase;
-	letter-spacing: -1px;
-}
-
-header h2 {
-	font-size: 2.5em;
-	font-weight: 200;
-	color: $grey;
-	display: inline-block;
-	float: right;
-	margin-right: 7.5%;
-	margin-top: 36px;
-}
-
 h3,
 h3 a {
 	font-size: 1.7em;
 	color: $grey;
 	margin-top: 22px;
 }
-
 h3 a:hover {
 	color: $english;
 }
@@ -170,6 +146,65 @@ strong {
 
 header {
 	background-color: $white;
+}
+header h1 {
+	margin: 6px 0 9px 7.5%;
+	display: inline-block;
+	font-weight: 200;
+	text-transform: uppercase;
+	letter-spacing: -1px;
+}
+header h2 {
+	font-size: 2.5em;
+	font-weight: 200;
+	color: $grey;
+	display: inline-block;
+	float: right;
+	margin-right: 7.5%;
+	margin-top: 22px;
+}
+#nav-icon {
+	padding-left: 32px;
+	margin-right: -69px;
+	margin-top: -12px;
+}
+nav#side-nav {
+	color: $creme;
+	width: 0;
+	background: $eerie;
+	color: #gold;
+	height: 100%;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	opacity: 0.95;
+	overflow-x: hidden;
+	padding-top: 88px;
+	transition: 0.3s;
+}
+nav#side-nav a {
+	color: $creme;
+	display: block;
+	margin: 0 0 44px 44px;
+	font-size: 1.3em;
+	transition: 0.2s;
+}
+nav#side-nav a:hover,
+nav#side-nav a:focus {
+	color: $gold;
+}
+nav#side-nav #nav-close {
+	font-size: 2em;
+	position: absolute;
+	top: 44px;
+	right: 44px;
+	cursor: pointer;
+	transition: 0.2s;
+}
+nav#side-nav #nav-close:hover,
+nav#side-nav #nav-close:focus {
+	color: $english;
 }
 
 /*----------------------------------------------------------------------------/*
@@ -228,7 +263,7 @@ tfoot tr:last-child td:last-child {
   width: 14%;
 	text-align: center;
 	padding: 0;
-	height: 100px;
+	height: 72px;
   overflow: hidden;
 }
 .main-calendar td a {
@@ -267,6 +302,7 @@ tfoot h3 {
 	color: $gold;
 	font-size: 40px;
 	font-weight: 200;
+	margin-top: 6px;
 }
 h3.month-selector-other a {
   height: 100%;
@@ -279,6 +315,10 @@ h3.month-selector-other a:hover {
   color: $lightgrey;
 	background-color: $river;
 	border-bottom: 4px solid $lightgrey; //find me
+}
+.arrow {
+	color: $eerie;
+	padding: 0 12px;
 }
 
 /*----------------------------------------------------------------------------/*
