@@ -20,15 +20,15 @@
             {% if day > 31 %}
               {% if day == 32 %} <!-- if the cell is 1st of next month -->
                 <td class="other-month">
-                  <a href="#">
+                  
                     1 {{ month_name_next }}
-                  </a>
+
                 </td>
               {% else %} <!-- if the cell is previous or next month -->
                 <td class="other-month">
-                  <a href="#">
+
                     {{ (day / 32)|int }}
-                  </a>
+
                 </td>
               {% endif %}
             {% elif day == now.day and current_month == now.month and current_year == now.year %}

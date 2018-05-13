@@ -146,12 +146,12 @@ header {
   background-color: #eee;
 }
 
-header h1 {
+#main-title {
   margin: 6px 0 9px 7.5%;
   display: inline-block;
   font-weight: 200;
-  text-transform: uppercase;
   letter-spacing: -1px;
+  transition: 0.3s;
 }
 
 header h2 {
@@ -165,15 +165,17 @@ header h2 {
 }
 
 #nav-icon {
-  padding-left: 32px;
+  display: inline-block;
+  margin-left: 28px;
   margin-right: -69px;
   margin-top: -12px;
+  padding-bottom: 22px;
 }
 
 nav#side-nav {
   color: #ffe;
   width: 0;
-  background: #191919;
+  background: #0c0c0c;
   color: #gold;
   height: 100%;
   position: fixed;
@@ -298,7 +300,7 @@ tfoot tr:last-child td:last-child {
   color: #191919;
 }
 
-td.other-month a {
+td.other-month {
   background: #c0c0c0;
   color: #818181;
 }

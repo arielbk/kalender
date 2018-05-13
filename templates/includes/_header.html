@@ -8,7 +8,7 @@
     </svg>
   </a>
 
-  <a href="/"><h1>Kalender</h1></a>
+  <h1 id="main-title">Kalender</h1>
   <h2>
     Today:
     {{ now.day }}{% if now.day == 1 or now.day == 21 or now.day == 31 %}st{% elif now.day == 2 or now.day == 22 %}nd{% elif now.day == 3 or now.day == 23 %}rd{% else %}th{% endif %}
