@@ -1,16 +1,8 @@
 {% extends 'modal-layout.html' %}
 
 {% block body %}
-<span id="btn-close">&times;</span>
-
-<h2>
-  {{ day }}{% if day == 1 or day == 21 or day == 31 %}st{% elif day == 2 or day == 22 %}nd{% elif day == 3 or day == 23 %}rd{% else %}th{% endif %}
-  {{ selected_month_name }},
-  {{ year }}
-</h2>
 
   {% from "includes/_formhelpers.html" import render_field %}
-  <section class="form-box form-box-large">
 
     <form action="" method="POST">
       <fieldset class="form-fields">
@@ -21,11 +13,17 @@
           {{ render_field(form.body, class_="form-control", id="editor") }}
         </label>
       </fieldset>
-      <fieldset class="form-action">
-        <input class="btn" type="submit" name="submit" value="Create Note">
-      </fieldset>
+
+      <div class="modal-footer form-action">
+          <h2 class="datenote-date">
+            {{ day }}{% if day == 1 or day == 21 or day == 31 %}st{% elif day == 2 or day == 22 %}nd{% elif day == 3 or day == 23 %}rd{% else %}th{% endif %}
+            {{ selected_month_name }},
+            {{ year }}
+          </h2>
+          <input class="btn btn-footer" type="submit" name="submit" value="Create Note">
+      </div>
+
     </form>
-  </section>
 
   <script src="https://cdn.ckeditor.com/ckeditor5/1.0.0-beta.3/classic/ckeditor.js"></script>
   <script type="text/javascript">

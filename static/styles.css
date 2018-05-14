@@ -76,6 +76,12 @@ body {
   color: #191919;
 }
 
+body.iframe-body {
+  background-color: #ffe;
+  margin: 0;
+  padding: 0;
+}
+
 /*----------------------------------------------------------------------------/*
 
                                               LAYOUT ->
@@ -231,7 +237,7 @@ nav#side-nav #nav-close:focus {
   top: 0;
   height: 100%;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: rgba(0, 0, 0, 0.7);
   overflow: visible;
 }
 
@@ -242,22 +248,26 @@ nav#side-nav #nav-close:focus {
 #modal-iframe {
   width: 100%;
   height: 100%;
+  border-radius: 5px;
 }
 
 .modal-content {
   background-color: #f4f4f4;
-  margin: 120px auto;
+  margin: 70px auto;
   width: 80%;
   height: 80%;
-  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.6), 0 7px 20px 0 rgba(0, 0, 0, 0.6);
   animation-name: modal-open;
   animation-duration: 1s;
+  border-radius: 5px;
 }
 
 #btn-close {
-  color: #fff;
-  float: right;
-  font-size: 30px;
+  color: #dd7975;
+  font-size: 60px;
+  position: fixed;
+  top: 20px;
+  right: 7.5%;
 }
 
 #btn-close:hover,
@@ -442,16 +452,12 @@ input {
 }
 
 .form-action {
-  background: #0a3847;
-  border-top: solid 1px #191919;
-  padding: 22px;
   border-radius: 0 0 5px 5px;
 }
 
 .form-action label {
   color: #ffe;
   font-size: 12px;
-  float: left;
   margin: 10px 0 0 20px;
 }
 
@@ -467,10 +473,6 @@ input {
 .btn-create,
 .form-action .btn {
   background: #cca559;
-}
-
-.form-action .btn {
-  float: left;
 }
 
 .btn-create:hover,
@@ -506,6 +508,28 @@ form select {
                                               DATE NOTES TABLE ->
 
 ==========================================================================*/
+h2.datenote-date {
+  color: #cca559;
+  display: inline-block;
+  font-weight: 400;
+  font-size: 1.8em;
+}
+
+.datenote-head th {
+  border-radius: 0;
+}
+
+tr.col-filler {
+  height: 80px;
+}
+
+.datenote-table {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  padding-bottom: 80px;
+}
+
 .datenote-title {
   text-align: left;
 }
@@ -517,6 +541,51 @@ form select {
 .datenote-options {
   text-align: right;
   padding: 22px;
+}
+
+.modal-footer {
+  position: fixed;
+  width: 100%;
+  height: 80px;
+  background: #0a3847;
+  bottom: 0;
+  left: 0;
+  padding: 22px;
+  border-top: solid 1px #191919;
+  border-radius: 0;
+  z-index: 1;
+}
+
+.edit-form {
+  margin-bottom: 80px;
+}
+
+.btn-footer {
+  float: right;
+}
+
+/*----------------------------------------------------------------------------/*
+
+                                              ALERTS ->
+
+==========================================================================*/
+.alert {
+  height: 120px;
+  padding: 12px;
+  text-align: center;
+  font-weight: 600;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  z-index: 0.9;
+}
+
+.alert-danger {
+  background: #dd7975;
+}
+
+.alert-success {
+  background: #8eff8e;
 }
 
 /*# sourceMappingURL=styles.css.map */

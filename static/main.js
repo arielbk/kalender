@@ -28,7 +28,7 @@ function openDate(year, month, day) {
 }
 
 function closeDate() {
-  parent.modalWindow.style.display = 'none';
+  location.reload();
 }
 
 function outsideClick (e) {
