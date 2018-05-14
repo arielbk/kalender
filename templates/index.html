@@ -32,7 +32,7 @@
                 </td>
               {% endif %}
             {% elif day == now.day and current_month == now.month and current_year == now.year %}
-              <td class="today-highlight"><a href="{{ current_year }}-{{ current_month }}-{{ day }}">{{ day }}
+              <td class="today-highlight"><a href="#" onClick="openDate({{current_year}}, {{current_month}}, {{day}})">{{ day }}
 
 
                 <ul class="small-titles">
@@ -46,7 +46,7 @@
 
               </a></td>
             {% elif day == 1 %}
-              <td><a href="{{ current_year }}-{{ current_month }}-1">1 {{ month_name_current }}
+              <td><a href="#" onClick="openDate({{current_year}}, {{current_month}}, 1)">1 {{ month_name_current }}
 
 
                 <ul class="small-titles">
@@ -60,7 +60,7 @@
 
               </a></td>
             {% else %}
-              <td><a href="{{ current_year }}-{{ current_month }}-{{ day }}">{{ day }}
+              <td><a href="#" onClick="openDate({{current_year}}, {{current_month}}, {{day}})">{{ day }}
 
 
                 <ul class="small-titles">
@@ -117,4 +117,11 @@
 </table>
 </section>
 
+<!-- BLANK MODAL WINDOW -->
+
+<div id="modal-window" class="modal">
+  <div class="modal-content">
+    <iframe src="#" id="modal-iframe"><p>Your browser does not support iFrames.</iframe>
+  </div>
+</div>
 {% endblock %}

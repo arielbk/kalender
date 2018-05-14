@@ -1,6 +1,7 @@
-{% extends 'layout.html' %}
+{% extends 'modal-layout.html' %}
 
 {% block body %}
+<span id="btn-close">&times;</span>
 
 <h2>
   {{ day }}{% if day == 1 or day == 21 or day == 31 %}st{% elif day == 2 or day == 22 %}nd{% elif day == 3 or day == 23 %}rd{% else %}th{% endif %}

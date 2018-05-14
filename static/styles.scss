@@ -215,6 +215,56 @@ nav#side-nav #nav-close:focus {
 
 /*----------------------------------------------------------------------------/*
 
+                                              MODAL STYLES ->
+
+==========================================================================*/
+
+.modal {
+	position:fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+	overflow: visible;
+}
+
+#modal-window {
+	display: none;
+}
+
+#modal-iframe {
+	width: 100%;
+	height: 100%;
+}
+
+.modal-content {
+  background-color: #f4f4f4;
+  margin: 120px auto;
+  width: 80%;
+	height: 80%;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+  animation-name: modal-open;
+  animation-duration: 1s;
+}
+
+#btn-close {
+  color: #fff;
+  float: right;
+  font-size: 30px;
+}
+
+#btn-close:hover,
+#btn-close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+/*----------------------------------------------------------------------------/*
+
                                               TABLES ->
 
 ==========================================================================*/
